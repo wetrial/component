@@ -1,0 +1,45 @@
+{
+  "name": "hooks",
+  "scope": "wetrial",
+  "builds": [
+    {
+      "src": "now-build.sh",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": ".doc"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/zh-cn/static/(.*)",
+      "headers": {
+        "cache-control": "s-maxage=604800"
+      },
+      "dest": "/zh-cn/static/$1"
+    },
+    {
+      "src": "/zh-cn/assets.json",
+      "dest": "/zh-cn/assets.json"
+    },
+    {
+      "src": "/zh-cn(/(.*))?",
+      "dest": "/zh-cn"
+    },
+    {
+      "src": "/static/(.*)",
+      "headers": {
+        "cache-control": "s-maxage=604800"
+      },
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/assets.json",
+      "dest": "/assets.json"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
+}
