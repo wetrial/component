@@ -24,6 +24,7 @@
     "dev:en-us": "father doc dev",
     "js": "node ./.ts2js.js",
     "build": "node ./scripts/clean-old-build.js && father build && tsc --declarationDir ./lib --noImplicitAny false && tsc --declarationDir ./es --noImplicitAny false && node ./scripts/build-wind-up.js",
+    "ff":"tsc --declarationDir ./lib --noImplicitAny false && tsc --declarationDir ./es --noImplicitAny false",
     "test": "father test",
     "cov": "father test --coverage",
     "help": "father help",
