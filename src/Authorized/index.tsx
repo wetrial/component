@@ -7,6 +7,6 @@ Authorized.Secured = Secured;
 Authorized.check = check;
 Authorized.hasPermissions = hasPermissions;
 
-const RenderAuthorize = renderAuthorize(Authorized);
+const RenderAuthorize = renderAuthorize<any>(Authorized);
 
 export default RenderAuthorize;
