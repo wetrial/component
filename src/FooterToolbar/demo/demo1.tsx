@@ -1,5 +1,5 @@
 import * as React from 'react';
-import FooterToolbar from '..';
+import { FooterToolbar } from '@wetrial/component';
 import { Button } from 'antd';
 
 export default () => {

@@ -15,18 +15,17 @@ export interface IEnumSelectProps<T, VT = string> extends SelectProps<VT> {
   /**
    * label对应的属性名
    */
-  label?: keyof { [key: string]: T }; // keyof T
+  labelName?: keyof { [key: string]: T }; // keyof T
 }
 
 export default function<T>(props: IEnumSelectProps<T>) {
-  const { list = [], keyName = 'key', label = 'label' } = props;
-
-  const selectProps = omit(props, 'keyName', 'label', 'list');
+  const { list = [], keyName = 'key', labelName = 'label' } = props;
+  const selectProps = React.useMemo(() => omit(props, 'keyName', 'label', 'list'), [props]);
   return (
     <Select optionFilterProp="children" placeholder="-- 请选择 --" {...selectProps}>
       {list.map(item => (
         <Select.Option key={`${item[keyName]}`} value={item[keyName]}>
-          {item[label]}
+          {item[labelName]}
         </Select.Option>
       ))}
     </Select>

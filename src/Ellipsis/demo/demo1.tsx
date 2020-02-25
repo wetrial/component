@@ -1,5 +1,5 @@
 import React from 'react';
-import Ellipsis from '..';
+import { Ellipsis } from '@wetrial/component';
 
 export default () => {
   return (

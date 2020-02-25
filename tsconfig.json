@@ -20,19 +20,22 @@
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "allowJs": false,
-    "experimentalDecorators": true
+    "allowJs": false
   },
   "exclude": [
     "node_modules",
-    "build",
-    "dist",
     "scripts",
     "acceptance-tests",
     "webpack",
     "jest",
     "src/setupTests.ts",
     "tslint:latest",
-    "tslint-config-prettier"
+    "tslint-config-prettier",
+    "lib",
+    "es",
+    "dist",
+    "**/__tests__",
+    "**/__test__",
+    "**/demo"
   ]
 }
