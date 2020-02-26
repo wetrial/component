@@ -69,6 +69,26 @@ const routes = [
                               value: '基本使用',
                               heading: '基本使用',
                             },
+                            {
+                              depth: 2,
+                              value: '权限是数组的情况',
+                              heading: '权限是数组的情况',
+                            },
+                            {
+                              depth: 2,
+                              value: '权限为一个方法的返回值',
+                              heading: '权限为一个方法的返回值',
+                            },
+                            {
+                              depth: 2,
+                              value: '注解形式使用',
+                              heading: '注解形式使用',
+                            },
+                            {
+                              depth: 2,
+                              value: '方法调用形式使用',
+                              heading: '方法调用形式使用',
+                            },
                             { depth: 1, value: 'API', heading: 'api' },
                             {
                               depth: 2,
@@ -274,8 +294,8 @@ const routes = [
                             },
                             {
                               depth: 2,
-                              value: '指定 keyName、label',
-                              heading: '指定-keyname、label',
+                              value: '指定 keyName、labelName',
+                              heading: '指定-keyname、labelname',
                             },
                             { depth: 2, value: '案例', heading: '案例-1' },
                             { depth: 1, value: 'API', heading: 'api' },
@@ -337,6 +357,26 @@ const routes = [
               depth: 2,
               value: '基本使用',
               heading: '基本使用',
+            },
+            {
+              depth: 2,
+              value: '权限是数组的情况',
+              heading: '权限是数组的情况',
+            },
+            {
+              depth: 2,
+              value: '权限为一个方法的返回值',
+              heading: '权限为一个方法的返回值',
+            },
+            {
+              depth: 2,
+              value: '注解形式使用',
+              heading: '注解形式使用',
+            },
+            {
+              depth: 2,
+              value: '方法调用形式使用',
+              heading: '方法调用形式使用',
             },
             {
               depth: 1,
@@ -649,8 +689,8 @@ const routes = [
             },
             {
               depth: 2,
-              value: '指定 keyName、label',
-              heading: '指定-keyname、label',
+              value: '指定 keyName、labelName',
+              heading: '指定-keyname、labelname',
             },
             {
               depth: 2,

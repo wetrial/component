@@ -1,8 +1,16 @@
+const { REACT_APP_ENV } = process.env;
+
+const isSite = REACT_APP_ENV !== 'dev';
+
 export default {
   // history: 'hash',
   hash: true,
-  // base: 'component',
-  // publicPath: '/component/',
+  ...(isSite
+    ? {
+        base: 'component',
+        publicPath: '/component/',
+      }
+    : null),
   extraBabelPlugins: [
     [
       'babel-plugin-import',

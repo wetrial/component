@@ -20,7 +20,7 @@
   "homepage": "https://github.com/wetrial/component",
   "scripts": {
     "start": "npm run dev",
-    "dev": "father-doc dev",
+    "dev": "cross-env REACT_APP_ENV=dev father-doc dev",
     "js": "node ./.ts2js.js",
     "build": "node ./scripts/clean-old-build.js && father build && tsc --declarationDir ./lib && tsc --declarationDir ./es && node ./scripts/build-wind-up.js",
     "test": "father test",
@@ -78,7 +78,7 @@
     "babel-plugin-import": "^1.12.0",
     "check-prettier": "^1.0.3",
     "classnames": "^2.2.6",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.0",
     "del": "^5.1.0",
     "enzyme": "^3.10.0",
     "father": "^2.29.2",
