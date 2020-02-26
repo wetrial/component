@@ -49,7 +49,17 @@
     "package.json"
   ],
   "dependencies": {
-    "react-custom-scrollbars": "^4.2.1"
+    "react-custom-scrollbars": "^4.2.1",
+    "@ant-design/icons": "^4.0.0-alpha.19",
+    "@wetrial/core": "^1.1.4",
+    "antd": "^4.0.0-rc.6",
+    "classnames": "^2.2.6",
+    "history": "^4.10.1",
+    "lodash": "^4.17.15",
+    "lodash-decorators": "^6.0.1",
+    "path-to-regexp": "^6.1.0",
+    "react": "^16.12.0",
+    "react-document-title": "^2.0.3"
   },
   "peerDependencies": {
     "@ant-design/icons": "4.x",
@@ -64,7 +74,6 @@
     "react-document-title": "2.x"
   },
   "devDependencies": {
-    "@ant-design/icons": "^4.0.0-alpha.19",
     "@testing-library/react-hooks": "^2.0.1",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.15",
@@ -73,26 +82,17 @@
     "@types/react-custom-scrollbars": "^4.0.6",
     "@types/react-document-title": "^2.0.3",
     "@umijs/fabric": "^2.0.2",
-    "@wetrial/core": "^1.1.4",
-    "antd": "^4.0.0-rc.6",
     "babel-plugin-import": "^1.12.0",
     "check-prettier": "^1.0.3",
-    "classnames": "^2.2.6",
     "cross-env": "^7.0.0",
     "del": "^5.1.0",
     "enzyme": "^3.10.0",
     "father": "^2.29.2",
     "father-doc": "^1.0.0-beta.5",
-    "history": "^4.10.1",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.7",
-    "lodash": "^4.17.15",
-    "lodash-decorators": "^6.0.1",
-    "path-to-regexp": "^6.1.0",
     "prettier": "^1.19.1",
     "raw-loader": "^3.1.0",
-    "react": "^16.12.0",
-    "react-document-title": "^2.0.3",
     "resize-observer-polyfill": "^1.5.1",
     "sylvanas": "^0.4.2",
     "typescript": "^3.8.2",
