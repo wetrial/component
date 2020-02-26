@@ -16,7 +16,7 @@ group:
 
 <code src="./demo/demo1.tsx" />
 
-### 指定 keyName、label
+### 指定 keyName、labelName
 
 <code src="./demo/demo2.tsx" />
 

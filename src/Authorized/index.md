@@ -10,7 +10,18 @@ group:
 
 权限组件，通过比对现有权限与准入权限，决定相关元素的展示。
 
-> 不建议直接使用该组件，通常情况下，会在项目中增加一层包装(请使用项目中的组件)
+> 不建议直接使用该组件，通常情况下，会在项目中增加一层包装(如下所示)
+
+```tsx | pure
+import Authorized from '@/utils/Authorized';
+export default () => {
+  return (
+    <Authorized authority="admin" noMatch={<div>无权访问</div>}>
+      有权访问
+    </Authorized>
+  );
+};
+```
 
 ## 案例
 
@@ -65,10 +76,10 @@ group:
 
 注解方式，`@Authorized.Secured(authority, error)`
 
-| 参数      | 说明               | 类型                                                         | 默认值                   |
-| --------- | ------------------ | ------------------------------------------------------------ | ------------------------ |
-| authority | 准入权限/权限判断  | `string | Promise | (currentAuthority) => boolean | Promise` | -                        |
-| error     | 权限异常时渲染元素 | ReactNode                                                    | <Exception type="403" /> |
+| 参数      | 说明               | 类型                                                         | 默认值                     |
+| --------- | ------------------ | ------------------------------------------------------------ | -------------------------- |
+| authority | 准入权限/权限判断  | `string | Promise | (currentAuthority) => boolean | Promise` | -                          |
+| error     | 权限异常时渲染元素 | ReactNode                                                    | `<Exception type="403" />` |
 
 ### Authorized.check
 
