@@ -35,5 +35,6 @@ export default {
         headScripts: ['https://hm.baidu.com/hm.js?a3636d814818bccb02a7991d78ba3048'],
       },
     ],
+    ['@umijs/plugin-qiankun'],
   ],
 };
