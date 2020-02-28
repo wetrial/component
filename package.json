@@ -49,9 +49,9 @@
     "package.json"
   ],
   "dependencies": {
-    "@ant-design/icons": "^4.0.0-alpha.19",
-    "@wetrial/core": "^1.1.4",
-    "antd": "^4.0.0-rc.6",
+    "@ant-design/icons": "^4.0.0",
+    "@wetrial/core": "^1.1.6",
+    "antd": "^4.0.0",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
     "lodash": "^4.17.15",
