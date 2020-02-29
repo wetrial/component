@@ -1,16 +1,12 @@
-const { REACT_APP_ENV } = process.env;
+// const { REACT_APP_ENV } = process.env;
 
-const isSite = REACT_APP_ENV !== 'dev';
+// const isSite = REACT_APP_ENV !== 'dev';
 
 export default {
   // history: 'hash',
   hash: true,
-  ...(isSite
-    ? {
-        base: 'component',
-        publicPath: '/component/',
-      }
-    : null),
+  base: '/component',
+  publicPath: '/component/',
   extraBabelPlugins: [
     [
       'babel-plugin-import',
@@ -28,11 +24,11 @@ export default {
     locales: [['zh-CN', '中文']],
   },
   plugins: [
+    ['@umijs/plugin-qiankun'],
     [
       'umi-plugin-react',
       {
-        pwa: true,
-        headScripts: ['https://hm.baidu.com/hm.js?a3636d814818bccb02a7991d78ba3048'],
+        // headScripts: ['https://hm.baidu.com/hm.js?a3636d814818bccb02a7991d78ba3048'],
         scripts: [
           // 由于github不支持url重写，history-route模式下会跳转到404 404页面会对路由进行处理将路由转换成?path=xxx/xxx这种形式，首页需要对这种进行处理通过window.g_history.push()进行跳转
           `(function(g_history){
@@ -44,6 +40,5 @@ export default {
         ],
       },
     ],
-    ['@umijs/plugin-qiankun'],
   ],
 };
