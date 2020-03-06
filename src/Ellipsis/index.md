@@ -1,9 +1,10 @@
 ---
 title: Ellipsis 超出省略
+order: 5
 group:
   title: 数据展示
   path: /data-display
-  order: 100
+  order: 2
 ---
 
 # Ellipsis 超出省略

@@ -1,9 +1,10 @@
 ---
 title: Exception 异常
+order: 10
 group:
   title: 通用
   path: /common
-  order: 1000
+  order: 1
 ---
 
 # Exception 异常

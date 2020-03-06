@@ -1,9 +1,10 @@
 ---
 title: AvatarList 头像列表
+order: 20
 group:
   title: 数据展示
   path: /data-display
-  order: 600
+  order: 2
 ---
 
 ## AvatarList 头像列表

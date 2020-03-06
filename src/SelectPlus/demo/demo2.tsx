@@ -7,5 +7,5 @@ export default () => {
     { id: 'PPT', text: '最好的语言' },
     { id: 'react', text: 'React' },
   ];
-  return <SelectPlus style={{ width: 200 }} list={list} keyName="id" labelName="text" />;
+  return <SelectPlus style={{ width: 200 }} list={list} keyName="id" label="text" />;
 };

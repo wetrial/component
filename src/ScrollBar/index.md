@@ -1,9 +1,10 @@
 ---
 title: ScrollBar 滚动条
+order: 5
 group:
   title: 通用
   path: /common
-  order: 1000
+  order: 1
 ---
 
 # ScrollBar 滚动条

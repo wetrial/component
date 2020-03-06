@@ -1,9 +1,10 @@
 ---
 title: Authorized 权限
+order: 1
 group:
   title: 通用
   path: /common
-  order: 1000
+  order: 1
 ---
 
 # Authorized 权限

@@ -1,9 +1,10 @@
 ---
 title: FooterToolbar 底部工具栏
+order: 15
 group:
   title: 通用
   path: /common
-  order: 1000
+  order: 1
 ---
 
 # FooterToolbar 底部工具栏

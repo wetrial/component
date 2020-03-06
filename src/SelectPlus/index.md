@@ -1,9 +1,10 @@
 ---
 title: SelectPlus 下拉选择
+order: 1
 group:
   title: 数据录入
-  path: /data-display
-  order: 900
+  path: /data-collect
+  order: 3
 ---
 
 # SelectPlus 下拉选择
@@ -26,9 +27,9 @@ group:
 
 ### SelectPlus
 
-| 参数                                                                     | 说明                      | 类型                        | 默认值  |
-| ------------------------------------------------------------------------ | ------------------------- | --------------------------- | ------- |
-| list                                                                     | 数据源数组                | Array\<T\>                  | -       |
-| keyName                                                                  | 数据源中作为 key 的属性名 | string                      | "key"   |
-| labelName                                                                | 多余的项目风格            | 数据源中作为 label 的属性名 | "label" |
-| [更多 属性 ](https://next.ant.design/components/select-cn/#Select-props) |                           |                             |         |
+| 参数                                                                     | 说明                        | 类型       | 默认值 |
+| ------------------------------------------------------------------------ | --------------------------- | ---------- | ------ |
+| list                                                                     | 数据源数组                  | `Array<T>` | -      |
+| keyName                                                                  | 数据源中作为 key 的属性名   | `string`   | key    |
+| label                                                                    | 数据源中作为 label 的属性名 | `string`   | label  |
+| [更多 属性 ](https://next.ant.design/components/select-cn/#Select-props) |                             |            |        |
