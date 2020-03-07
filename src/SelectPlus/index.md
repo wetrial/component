@@ -17,7 +17,7 @@ group:
 
 <code src="./demo/demo1.tsx" />
 
-### 指定 keyName、labelName
+### 指定 keyProp、labelProp
 
 <code src="./demo/demo2.tsx" />
 
@@ -30,6 +30,6 @@ group:
 | 参数                                                                     | 说明                        | 类型       | 默认值 |
 | ------------------------------------------------------------------------ | --------------------------- | ---------- | ------ |
 | list                                                                     | 数据源数组                  | `Array<T>` | -      |
-| keyName                                                                  | 数据源中作为 key 的属性名   | `string`   | key    |
-| label                                                                    | 数据源中作为 label 的属性名 | `string`   | label  |
+| keyProp                                                                  | 数据源中作为 key 的属性名   | `string`   | key    |
+| labelProp                                                                | 数据源中作为 label 的属性名 | `string`   | label  |
 | [更多 属性 ](https://next.ant.design/components/select-cn/#Select-props) |                             |            |        |

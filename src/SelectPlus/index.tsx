@@ -11,21 +11,21 @@ export interface IEnumSelectProps<T, VT = string> extends SelectProps<VT> {
   /**
    * key&值对应的 属性名
    */
-  keyName?: keyof { [key: string]: T }; // string, // keyof T,
+  keyProp?: keyof { [key: string]: T }; // string, // keyof T,
   /**
    * label对应的属性名
    */
-  label?: keyof { [key: string]: T }; // keyof T
+  labelProp?: keyof { [key: string]: T }; // keyof T
 }
 
 export default function<T>(props: IEnumSelectProps<T>) {
-  const { list = [], keyName = 'key', label = 'label' } = props;
-  const selectProps = React.useMemo(() => omit(props, 'keyName', 'label', 'list'), [props]);
+  const { list = [], keyProp = 'key', labelProp = 'label' } = props;
+  const selectProps = React.useMemo(() => omit(props, 'keyProp', 'labelProp', 'list'), [props]);
   return (
     <Select optionFilterProp="children" placeholder="-- 请选择 --" {...selectProps}>
       {list.map(item => (
-        <Select.Option key={`${item[keyName]}`} value={item[keyName]}>
-          {item[label]}
+        <Select.Option key={`${item[keyProp]}`} value={item[keyProp]}>
+          {item[labelProp]}
         </Select.Option>
       ))}
     </Select>

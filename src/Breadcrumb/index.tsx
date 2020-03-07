@@ -2,7 +2,7 @@ import { Location } from 'history';
 
 import React, { PureComponent, createElement } from 'react';
 import { Breadcrumb } from 'antd';
-import pathToRegexp from 'path-to-regexp';
+import { pathToRegexp } from 'path-to-regexp';
 import { urlToList } from '@wetrial/core/utils';
 import './index.less';
 
@@ -22,7 +22,6 @@ export const getBreadcrumb = (breadcrumbNameMap, url) => {
   let breadcrumb = breadcrumbNameMap[url];
   if (!breadcrumb) {
     Object.keys(breadcrumbNameMap).forEach(item => {
-      // @ts-ignore
       if (pathToRegexp(item).test(url)) {
         breadcrumb = breadcrumbNameMap[item];
       }
