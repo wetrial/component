@@ -1,10 +1,13 @@
 ---
 title: AvatarList 头像列表
-order: 20
+order: 30
+nav:
+  title: 组件
+  path: /list
 group:
   title: 数据展示
   path: /data-display
-  order: 2
+legacy: /data-display/avatar-list
 ---
 
 ## AvatarList 头像列表

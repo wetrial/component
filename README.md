@@ -1,6 +1,8 @@
 ---
-title: 关于本站
-order: 1
+hero:
+  actions:
+    - text: Getting Started
+      link: /getting-started
 ---
 
 English | [简体中文](./README_zh-CN.md)

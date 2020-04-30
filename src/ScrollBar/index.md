@@ -1,10 +1,13 @@
 ---
 title: ScrollBar 滚动条
-order: 5
+order: 10
+nav:
+  title: 组件
+  path: /list
 group:
   title: 通用
   path: /common
-  order: 1
+legacy: /common/scroll-bar
 ---
 
 # ScrollBar 滚动条

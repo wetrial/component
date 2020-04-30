@@ -1,10 +1,13 @@
 ---
 title: Ellipsis 超出省略
-order: 5
+order: 10
+nav:
+  title: 组件
+  path: /list
 group:
   title: 数据展示
   path: /data-display
-  order: 2
+legacy: /data-display/ellipsis
 ---
 
 # Ellipsis 超出省略

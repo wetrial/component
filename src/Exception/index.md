@@ -1,10 +1,13 @@
 ---
 title: Exception 异常
-order: 10
+order: 30
+nav:
+  title: 组件
+  path: /list
 group:
   title: 通用
   path: /common
-  order: 1
+legacy: /common/exception
 ---
 
 # Exception 异常

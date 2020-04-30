@@ -1,10 +1,13 @@
 ---
 title: FooterToolbar 底部工具栏
-order: 15
+order: 100
+nav:
+  title: 组件
+  path: /list
 group:
   title: 通用
   path: /common
-  order: 1
+legacy: /common/footer-toolbar
 ---
 
 # FooterToolbar 底部工具栏
