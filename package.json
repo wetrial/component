@@ -23,6 +23,7 @@
     "dev": "dumi dev",
     "js": "node ./.ts2js.js",
     "build": "node ./scripts/clean-old-build.js && father build && tsc --declarationDir ./lib && tsc --declarationDir ./es && node ./scripts/build-wind-up.js",
+    "build:dev":"father build && tsc --declarationDir ./lib && tsc --declarationDir ./es",
     "test": "father test",
     "cov": "father test --coverage",
     "help": "father help",
