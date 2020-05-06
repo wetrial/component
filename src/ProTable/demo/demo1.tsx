@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Input, Button } from 'antd';
-import { TablePlus } from '@wetrial/component';
-import { ProColumns } from '@wetrial/component/es/TablePlus';
+import { ProTable } from '@wetrial/component';
+import { ProColumns } from '@wetrial/component/es/ProTable';
 
 const valueEnum = {
   0: 'close',
@@ -42,7 +42,6 @@ const columns: ProColumns<TableListItem>[] = [
   {
     title: '状态',
     dataIndex: 'status',
-    initialValue: 'all',
     width: 100,
     valueEnum: {
       all: { text: '全部', status: 'Default' },
@@ -78,16 +77,15 @@ const columns: ProColumns<TableListItem>[] = [
 
 export default () => {
   return (
-    <TablePlus<TableListItem>
+    <ProTable<TableListItem>
       columns={columns}
       rowKey="key"
       pagination={{
         showSizeChanger: true,
       }}
-      dateFormatter="string"
       toolBarRender={() => [<Button type="primary">新增</Button>, <Button>其他操作</Button>]}
-      type="simple"
-      searchForm={() => (
+      searchType="simple"
+      renderSearch={() => (
         <Row>
           <Col flex={2}>
             <Input.Search placeholder="请输入" allowClear />

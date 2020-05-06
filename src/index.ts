@@ -10,4 +10,4 @@ export { default as ScrollBar } from './ScrollBar';
 
 export { default as SelectPlus } from './SelectPlus';
 
-export { default as TablePlus } from './TablePlus';
+export { default as ProTable } from './ProTable';
