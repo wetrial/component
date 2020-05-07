@@ -1,5 +1,5 @@
 import React from 'react';
-import { SelectPlus } from '@wetrial/component';
+import { ProSelect } from '@wetrial/component';
 
 export default () => {
   const list = [
@@ -7,5 +7,5 @@ export default () => {
     { id: 'PPT', text: '最好的语言' },
     { id: 'react', text: 'React' },
   ];
-  return <SelectPlus style={{ width: 200 }} list={list} keyProp="id" labelProp="text" />;
+  return <ProSelect style={{ width: 200 }} list={list} keyProp="id" labelProp="text" />;
 };

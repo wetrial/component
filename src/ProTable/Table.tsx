@@ -9,7 +9,11 @@ import Toolbar, { OptionConfig, ToolBarProps } from './component/toolBar';
 import { StatusType } from './component/status';
 
 import get, { parsingText, useDeepCompareEffect, genColumnKey } from './component/util';
-import { ProColumnsValueType, ProColumnsValueTypeFunction } from './defaultRender';
+import defaultRenderText, {
+  ProColumnsValueType,
+  ProColumnsValueTypeFunction,
+} from './defaultRender';
+import { DensitySize } from './component/toolBar/DensityIcon';
 import ErrorBoundary from './component/ErrorBoundary';
 
 import './index.less';
@@ -63,6 +67,7 @@ export interface ProTableProps<T, U extends { [key: string]: any }>
    * 默认的操作栏配置
    */
   options?: OptionConfig<T> | false;
+  onSizeChange?: (size: DensitySize) => void;
   /**
    * 自定义 table 的 alert
    * 设置或者返回false 即可关闭
@@ -93,12 +98,19 @@ const columRender = <T, U = any>({ item, text, row, index }: ColumRenderInterfac
   const counter = Container.useContainer();
   const { action } = counter;
   const { valueEnum = {} } = item;
+
   if (!action.current) {
     return null;
   }
-  const columnText = parsingText(text, valueEnum);
+
+  const renderText = (val: any) => val;
+
+  const renderTextStr = renderText(parsingText(text, valueEnum, true));
+  const dom = defaultRenderText<T, {}>(renderTextStr, item.valueType || 'text', index, row);
+
+  // const columnText = parsingText(text, valueEnum);
   if (item.render) {
-    const renderDom = item.render(columnText, row, index);
+    const renderDom = item.render(dom, row, index);
 
     // 如果是合并单元格的，直接返回对象
     if (
@@ -115,7 +127,7 @@ const columRender = <T, U = any>({ item, text, row, index }: ColumRenderInterfac
     }
     return renderDom as React.ReactNode;
   } else {
-    return columnText;
+    return dom;
   }
 };
 
@@ -216,7 +228,10 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
         }),
       );
     }
+    counter.setProColumns(propsColumns);
   }, [propsColumns]);
+
+  counter.setAction(action);
 
   /**
    * 这里主要是为了排序，为了保证更新及时，每次都重新计算
@@ -253,7 +268,7 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
   }, [counter.columnsMap, counter.sortKeyColumns.join('-')]);
 
   useEffect(() => {
-    counter.setTableSize(rest.size || 'middle');
+    counter.setTableSize(rest.size || 'large');
   }, [rest.size]);
 
   if (counter.columns.length < 1) {
@@ -263,7 +278,6 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
       </Card>
     );
   }
-
   return (
     <ConfigProvider
       getPopupContainer={() => ((rootRef.current || document.body) as any) as HTMLElement}

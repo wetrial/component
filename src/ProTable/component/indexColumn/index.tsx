@@ -15,7 +15,7 @@ const IndexColumn: React.FC<{ border?: boolean }> = ({ border = false, children 
         <div
           className={classnames(className, {
             [`${className}-border`]: border,
-            'top-three': (children as number) > 2,
+            'top-three': (children as number) > 3,
           })}
         >
           {children}

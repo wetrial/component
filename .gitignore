@@ -9,3 +9,4 @@
 /yarn-error.log
 .umi
 .umi-production
+__snapshots__

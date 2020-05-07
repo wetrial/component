@@ -1,5 +1,5 @@
 ---
-title: SelectPlus 下拉选择
+title: ProSelect 下拉选择
 order: 30
 nav:
   title: 组件
@@ -10,7 +10,7 @@ group:
 legacy: /data-collect/select-plus
 ---
 
-# SelectPlus 下拉选择
+# ProSelect 下拉选择
 
 扩展 Select 功能，支持直接传递一个数据源，指定数据源的 key、labe 即可
 
@@ -28,7 +28,7 @@ legacy: /data-collect/select-plus
 
 ## API
 
-### SelectPlus
+### ProSelect
 
 | 参数                                                                     | 说明                        | 类型       | 默认值 |
 | ------------------------------------------------------------------------ | --------------------------- | ---------- | ------ |

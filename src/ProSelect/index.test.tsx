@@ -1,15 +1,15 @@
 import { mount } from 'enzyme';
 import React from 'react';
-import SelectPlus from './index';
+import ProSelect from './index';
 
-describe('SelectPlus', () => {
+describe('ProSelect', () => {
   it('simple list', () => {
     const list = [
       { label: 'C#', key: 'C#' },
       { label: '最好的语言', key: 'PPT' },
       { label: 'REACT', key: 'REACT' },
     ];
-    const wraper = mount(<SelectPlus list={list} />);
+    const wraper = mount(<ProSelect list={list} />);
     expect(wraper.find('_default').props().list).toEqual(list);
   });
 });

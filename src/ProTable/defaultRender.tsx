@@ -19,7 +19,6 @@ import { getProgressStatus } from './component/util';
  */
 export type ProColumnsValueType =
   | 'money'
-  | 'textarea'
   | 'option'
   | 'date'
   | 'dateRange'
@@ -219,10 +218,10 @@ const defaultRenderText = <T, U>(
       </pre>
     );
   }
-  // @ts-ignore
-  if (text !== false && typeof text !== 'number' && !text) {
-    return '-';
-  }
+  // // @ts-ignore
+  // if (text !== false && typeof text !== 'number' && !text) {
+  //   return '-';
+  // }
 
   return text;
 };

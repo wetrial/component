@@ -109,7 +109,7 @@ const ToolBar = <T, U = {}>({
   action,
   options = {
     density: true,
-    fullScreen: () => {},
+    fullScreen: () => action.fullScreen && action.fullScreen(),
     setting: true,
   },
   className,

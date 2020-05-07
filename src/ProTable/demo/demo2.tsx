@@ -143,6 +143,10 @@ export default () => {
       searchType={type}
       renderSearch={type === 'simple' ? simpleSearch : advanceSearch}
       dataSource={tableListDataSource}
+      containerClassName="xxxxxxx"
+      containerStyle={{ border: '3px solid red' }}
+      tableAlertRender={() => <div>xxxxxxxxxxxxxxxxxx</div>}
+      options={{ density: true, fullScreen: true, setting: true }}
       onColumnsStateChange={map => {
         console.log(map);
       }}

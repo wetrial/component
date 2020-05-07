@@ -8,6 +8,6 @@ export { default as FooterToolbar } from './FooterToolbar';
 
 export { default as ScrollBar } from './ScrollBar';
 
-export { default as SelectPlus } from './SelectPlus';
+export { default as ProSelect } from './ProSelect';
 
 export { default as ProTable } from './ProTable';
