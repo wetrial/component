@@ -105,7 +105,7 @@ export default () => {
             }}
             type="link"
           >
-            简单搜索
+            复杂搜索
           </Button>
         </Col>
       </Row>
@@ -143,6 +143,7 @@ export default () => {
       onColumnsStateChange={map => {
         console.log(map);
       }}
+      containerClassName="xxxxxxxxx"
       onSizeChange={size => {
         console.log(size);
       }}

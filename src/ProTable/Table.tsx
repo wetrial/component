@@ -16,8 +16,6 @@ import defaultRenderText, {
 import { DensitySize } from './component/toolBar/DensityIcon';
 import ErrorBoundary from './component/ErrorBoundary';
 
-import './index.less';
-
 export interface ColumnsState {
   show?: boolean;
   fixed?: 'right' | 'left' | undefined;
