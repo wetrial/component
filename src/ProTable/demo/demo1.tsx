@@ -136,9 +136,6 @@ export default () => {
     <ProTable<TableListItem>
       columns={columns}
       rowKey="key"
-      pagination={{
-        showSizeChanger: true,
-      }}
       toolBarRender={() => [<Button type="primary">新增</Button>, <Button>其他操作</Button>]}
       searchType={type}
       renderSearch={type === 'simple' ? simpleSearch : advanceSearch}
