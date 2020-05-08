@@ -32,6 +32,16 @@ export default defineConfig({
       path: 'https://wetrial.github.io/hooks',
     },
   ],
+  extraBabelPlugins: [
+    [
+      'import',
+      {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: 'css',
+      },
+    ],
+  ],
   // scripts: [
   //   // 由于github不支持url重写，history-route模式下会跳转到404 404页面会对路由进行处理将路由转换成?path=xxx/xxx这种形式，首页需要对这种进行处理通过window.g_history.push()进行跳转
   //   `(function(g_history){

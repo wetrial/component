@@ -1,8 +1,13 @@
 import { IBundleOptions } from 'father-build';
 
 const options: IBundleOptions = {
-  esm: 'babel',
+  entry: 'src/index.ts',
+  esm: {
+    type: 'babel',
+    importLibToEs: true,
+  },
   cjs: 'babel',
+  extraBabelPlugins: [['import', { libraryName: 'antd', style: true }]],
   disableTypeCheck: true,
   preCommit: {
     eslint: true,
