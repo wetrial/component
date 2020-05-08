@@ -12,14 +12,13 @@ import TableStatus, { StatusType } from './status';
  */
 export const parsingText = (
   text: string | number,
-  valueEnum?: {
-    [key: string]:
-      | {
-          text: ReactNode;
-          type: StatusType;
-        }
-      | ReactNode;
-  },
+  valueEnum?:
+    | {
+        [key: string]: string;
+      }
+    | {
+        [key: number]: string;
+      },
   pure?: boolean,
 ) => {
   if (!valueEnum) {

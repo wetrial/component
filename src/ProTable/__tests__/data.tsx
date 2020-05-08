@@ -42,10 +42,6 @@ export const columns: ProColumns<any>[] = [
   {
     title: 'sex',
     dataIndex: 'sex',
-    valueEnum: {
-      man: '男',
-      woman: '女',
-    },
   },
   {
     title: 'Age',

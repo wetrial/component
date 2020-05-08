@@ -39,11 +39,10 @@ pro-table 在 antd 的 table 上进行了一层封装，支持了一些预设，
 
 ## Columns
 
-| 参数                                                         | 说明                                                | 类型                                                                    | 默认值 |
-| ------------------------------------------------------------ | --------------------------------------------------- | ----------------------------------------------------------------------- | ------ |
-| valueEnum                                                    | 值的枚举，会自动转化把值当成 key 来取出要显示的内容 | [valueEnum](#valueEnum)                                                 | -      |
-| valueType                                                    | 值的类型                                            | `'money'、'option'、'date'、'dateTime'、'time'、'index'、'indexBorder'` | 'text' |
-| [更多 属性 ](https://ant.design/components/table-cn/#Column) |                                                     |
+| 参数                                                         | 说明                           | 类型                                                                                                                       | 默认值 |
+| ------------------------------------------------------------ | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ------ |
+| valueType                                                    | 值的类型,相当于简化版的 render | `'money'、'option'、'date'、'dateRange'、'dateTime'、'dateTimeRange'、'time'、'index'、'indexBorder'、'progress'、'digit'` | 'text' |
+| [更多 属性 ](https://ant.design/components/table-cn/#Column) |                                |
 
 ## valueType
 
@@ -62,13 +61,3 @@ pro-table 在 antd 的 table 上进行了一层封装，支持了一些预设，
 | indexBorder   | 带 border 的序号列                                              | -                                       |
 | progress      | 进度条                                                          | -                                       |
 | digit         | 单纯的数字                                                      | -                                       |
-
-## valueEnum
-
-当前列值的枚举
-
-```typescript | pure
-interface IValueEnum {
-  [key: string | number]: string;
-}
-```

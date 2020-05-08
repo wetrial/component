@@ -1,4 +1,4 @@
-import React, { useEffect, CSSProperties, useRef, ReactNode } from 'react';
+import React, { useEffect, CSSProperties, useRef } from 'react';
 import { Table, ConfigProvider, Card, Space, Empty } from 'antd';
 import { ColumnsType, TableProps, ColumnType } from 'antd/es/table';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
@@ -6,9 +6,8 @@ import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
 import { IntlProvider, IntlConsumer } from './component/intlContext';
 import Container from './container';
 import Toolbar, { OptionConfig, ToolBarProps } from './component/toolBar';
-import { StatusType } from './component/status';
 
-import get, { parsingText, useDeepCompareEffect, genColumnKey } from './component/util';
+import get, { useDeepCompareEffect, genColumnKey } from './component/util';
 import defaultRenderText, {
   ProColumnsValueType,
   ProColumnsValueTypeFunction,
@@ -26,24 +25,13 @@ export interface ProColumnType<T = unknown> extends ColumnType<T> {
    * 值的类型
    */
   valueType?: ProColumnsValueType | ProColumnsValueTypeFunction<T>;
-  /**
-   * 值的枚举，如果存在枚举，Search 中会生成 select
-   */
-  valueEnum?: {
-    [key: string]:
-      | {
-          text: ReactNode;
-          status: StatusType;
-        }
-      | ReactNode;
-  };
 }
 
 export interface ProColumnGroupType<RecordType> extends ProColumnType<RecordType> {
   children: ProColumns<RecordType>;
 }
 
-export type ProColumns<T> = ProColumnGroupType<T> | ProColumnType<T>;
+export type ProColumns<T = any> = ProColumnGroupType<T> | ProColumnType<T>;
 
 export interface ProTableProps<T, U extends { [key: string]: any }>
   extends Omit<TableProps<T>, 'columns'> {
@@ -95,16 +83,12 @@ interface ColumRenderInterface<T> {
 const columRender = <T, U = any>({ item, text, row, index }: ColumRenderInterface<T>): any => {
   const counter = Container.useContainer();
   const { action } = counter;
-  const { valueEnum = {} } = item;
 
   if (!action.current) {
     return null;
   }
 
-  const renderText = (val: any) => val;
-
-  const renderTextStr = renderText(parsingText(text, valueEnum, true));
-  const dom = defaultRenderText<T, {}>(renderTextStr, item.valueType || 'text', index, row);
+  const dom = defaultRenderText<T, {}>(text, item.valueType || 'text', index, row);
 
   // const columnText = parsingText(text, valueEnum);
   if (item.render) {

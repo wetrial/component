@@ -49,12 +49,6 @@ const columns: ProColumns<TableListItem>[] = [
     title: '状态',
     dataIndex: 'status',
     width: 100,
-    valueEnum: {
-      running: '运行中',
-      online: '已上线',
-      error: '异常',
-      close: '关闭',
-    },
   },
   {
     title: '创建时间',
