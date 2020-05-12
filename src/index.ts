@@ -1,3 +1,5 @@
+import { configIconUrl } from './IconFont';
+
 export { default as AvatarList } from './AvatarList';
 
 export { default as Ellipsis } from './Ellipsis';
@@ -6,8 +8,21 @@ export { default as Exception } from './Exception';
 
 export { default as FooterToolbar } from './FooterToolbar';
 
+export { default as IconFont } from './IconFont';
+
 export { default as ScrollBar } from './ScrollBar';
 
 export { default as ProSelect } from './ProSelect';
 
 export { default as ProTable } from './ProTable';
+
+interface IWetrialComponentProps {
+  /**
+   * 字体图标文件地址
+   */
+  iconFontUrl: string;
+}
+
+export const initComponent = (props: IWetrialComponentProps) => {
+  configIconUrl(props.iconFontUrl);
+};
