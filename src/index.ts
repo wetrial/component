@@ -6,8 +6,10 @@ export { default as Exception } from './Exception';
 
 export { default as FooterToolbar } from './FooterToolbar';
 
-export { default as ScrollBar } from './ScrollBar';
-
 export { default as ProSelect } from './ProSelect';
 
 export { default as ProTable } from './ProTable';
+
+export { default as ScrollBar } from './ScrollBar';
+
+export { default as Table } from './Table';
