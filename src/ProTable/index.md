@@ -14,15 +14,23 @@ legacy: /data-display/pro-table
 
 pro-table 在 antd 的 table 上进行了一层封装，支持了一些预设，并且封装了一些行为。这里只列出与 antd table 不同的 api。
 
+## 使用场景
+
+一般用于主列表页面，需要复杂搜索、记录搜索条件等的；(请根据情况使用，勿滥用.)
+
 ## 案例
 
 ### 基础使用
 
 <code src="./demo/demo1.tsx" />
 
-### 自定义容器样式提示块
+### 自定义容器样式及提示块
 
 <code src="./demo/demo2.tsx" />
+
+### 伸缩列
+
+<code src="./demo/demo3.tsx" />
 
 ## Table
 

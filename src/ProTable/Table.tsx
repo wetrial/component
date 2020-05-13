@@ -1,5 +1,5 @@
 import React, { useEffect, CSSProperties, useRef } from 'react';
-import { Table, ConfigProvider, Card, Space, Empty } from 'antd';
+import { ConfigProvider, Card, Space, Empty } from 'antd';
 import { ColumnsType, TableProps, ColumnType } from 'antd/es/table';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
 
@@ -14,6 +14,7 @@ import defaultRenderText, {
 } from './defaultRender';
 import { DensitySize } from './component/toolBar/DensityIcon';
 import ErrorBoundary from './component/ErrorBoundary';
+import ResizeableTalbe, { IResizeableTableProps } from '../Table';
 
 import './index.less';
 
@@ -36,7 +37,8 @@ export interface ProColumnGroupType<RecordType> extends ProColumnType<RecordType
 export type ProColumns<T = any> = ProColumnGroupType<T> | ProColumnType<T>;
 
 export interface ProTableProps<T, U extends { [key: string]: any }>
-  extends Omit<TableProps<T>, 'columns'> {
+  extends Omit<TableProps<T>, 'columns'>,
+    IResizeableTableProps<T> {
   columns?: ProColumns<T>[];
   columnsStateMap?: {
     [key: string]: ColumnsState;
@@ -284,7 +286,7 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
             toolBarRender={toolBarRender}
           />
           {tableAlertRender ? tableAlertRender() : null}
-          <Table<T>
+          <ResizeableTalbe<T>
             {...rest}
             size={counter.tableSize}
             className={className}

@@ -6,8 +6,7 @@ import { IKeyValue } from '@wetrial/core/types';
 
 import './index.less';
 
-export interface IResizeableTableProps<RecordType extends object = any>
-  extends TableProps<RecordType> {
+export interface IResizeableTableProps<RecordType = any> extends TableProps<RecordType> {
   /**
    * 是否允许伸缩列
    */
