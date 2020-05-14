@@ -43,6 +43,7 @@ const columns: ProColumns<TableListItem>[] = [
   {
     title: '标题',
     dataIndex: 'name',
+    width: 200,
     render: _ => <a>{_}</a>,
   },
   {
@@ -99,7 +100,7 @@ export default () => {
             }}
             type="link"
           >
-            简单搜索
+            复杂搜索
           </Button>
         </Col>
       </Row>
@@ -128,22 +129,17 @@ export default () => {
 
   return (
     <ProTable<TableListItem>
+      resizeable
       columns={columns}
       rowKey="key"
-      pagination={{
-        showSizeChanger: true,
-      }}
       toolBarRender={() => [<Button type="primary">新增</Button>, <Button>其他操作</Button>]}
       searchType={type}
       renderSearch={type === 'simple' ? simpleSearch : advanceSearch}
       dataSource={tableListDataSource}
-      containerClassName="xxxxxxx"
-      containerStyle={{ border: '3px solid red' }}
-      tableAlertRender={() => <div>xxxxxxxxxxxxxxxxxx</div>}
-      options={{ density: true, fullScreen: true, setting: true }}
       onColumnsStateChange={map => {
         console.log(map);
       }}
+      containerClassName="xxxxxxxxx"
       onSizeChange={size => {
         console.log(size);
       }}

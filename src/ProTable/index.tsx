@@ -13,8 +13,6 @@ import {
 } from './component/intlContext';
 import defaultRenderText, { ProColumnsValueType } from './defaultRender';
 
-import './index.less';
-
 export type {
   ProTableProps,
   IntlType,
