@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Table } from 'antd';
 import { TableProps } from 'antd/es/table';
 import { Resizable } from 'react-resizable';
-import { IKeyValue } from '@wetrial/core/types';
+import { IKeyValue } from '@wetrial/core';
 
 import './index.less';
 
@@ -13,7 +13,7 @@ export interface IResizeableTableProps<RecordType = any> extends TableProps<Reco
   resizeable?: boolean;
 }
 
-const ResizeableTitle = props => {
+const ResizeableTitle = (props) => {
   const { onResize, width, ...restProps } = props;
 
   if (!width) {
@@ -27,7 +27,7 @@ const ResizeableTitle = props => {
       handle={
         <span
           className="wetrial-resizable-handle"
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
           }}
         />
@@ -62,7 +62,7 @@ const ResizeableTalbe = <RecordType extends object = any>(
     }, {});
   });
 
-  const handleResize = key => (e, { size }) => {
+  const handleResize = (key) => (e, { size }) => {
     setColumnSize({
       ...columnSize,
       [key]: size.width,
