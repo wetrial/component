@@ -4,11 +4,13 @@ import { defineConfig } from 'umi';
 // const isSite = REACT_APP_ENV !== 'dev';
 
 export default defineConfig({
-  // history: 'hash',
   antd: {
     dark: false,
   },
   hash: true,
+  history: {
+    type: 'browser',
+  },
   //dynamicImport: {},
   base: '/component',
   publicPath: '/component/',

@@ -37,8 +37,7 @@ class AvatarList extends PureComponent<AvatarListProps> {
 
     const childrenWithProps = React.Children.toArray(children)
       .slice(0, numToShow)
-      .map(child =>
-        // @ts-ignore
+      .map((child: any) =>
         React.cloneElement(child, {
           size,
         }),

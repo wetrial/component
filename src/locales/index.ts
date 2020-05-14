@@ -1,7 +1,7 @@
 import enTWLocal from './en-US';
 import zhLocal from './zh-CN';
 import zhTWLocal from './zh-TW';
-import { isBrowser } from '@wetrial/core/utils';
+import { isBrowser } from '@wetrial/core/lib/utils';
 
 const locales = { 'zh-CN': zhLocal, 'zh-TW': zhTWLocal, 'en-US': enTWLocal };
 
