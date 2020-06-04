@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
 import { PushpinOutlined, SettingOutlined, VerticalAlignMiddleOutlined } from '@ant-design/icons';
 import { Checkbox, Popover, Tooltip } from 'antd';
 import { DndProvider } from 'react-dnd';
-import Backend from 'react-dnd-html5-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import Container from '../../container';
 import { ProColumns, ColumnsState } from '../../Table';
 import DnDItem from './DndItem';
@@ -119,15 +119,27 @@ const CheckboxList: React.FC<{
   showTitle?: boolean;
 }> = ({ list, className, showTitle = true, title: listTitle }) => {
   const { columnsMap, setColumnsMap, sortKeyColumns, setSortKeyColumns } = Container.useContainer();
+
+  const momveColumn = useCallback(
+    (dragIndex: number, hoverIndex: number) => {
+      const newArry = [...sortKeyColumns];
+      const dragItem = sortKeyColumns[dragIndex];
+      newArry.splice(dragIndex, 1);
+      newArry.splice(hoverIndex, 0, dragItem);
+      setSortKeyColumns(newArry);
+    },
+    [sortKeyColumns],
+  );
+
   const show = list && list.length > 0;
   if (!show) {
     return null;
   }
+
   const move = (id: string, targetIndex: number) => {
     const newColumns = [...sortKeyColumns];
 
     const findIndex = newColumns.findIndex((columnKey) => columnKey === id);
-
     const key = newColumns[findIndex];
     newColumns.splice(findIndex, 1);
     if (targetIndex === 0) {
@@ -148,6 +160,7 @@ const CheckboxList: React.FC<{
         end={(id, targetIndex) => {
           move(id, targetIndex);
         }}
+        move={momveColumn}
       >
         <CheckboxListItem
           setColumnsMap={setColumnsMap}
@@ -161,7 +174,7 @@ const CheckboxList: React.FC<{
     );
   });
   return (
-    <DndProvider backend={Backend}>
+    <DndProvider backend={HTML5Backend}>
       {showTitle && <span className={`${className}-list-title`}>{listTitle}</span>}
       {listDom}
     </DndProvider>
