@@ -77,22 +77,22 @@
     "react-document-title": "*"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^3.2.1",
+    "@testing-library/react-hooks": "^3.3.0",
     "@types/classnames": "^2.2.10",
     "@types/jest": "^25.2.3",
     "@types/lodash": "^4.14.155",
     "@types/pubsub-js": "^1.8.0",
     "@types/react-custom-scrollbars": "^4.0.6",
     "@types/react-document-title": "^2.0.4",
-    "@umijs/fabric": "^2.0.9",
+    "@umijs/fabric": "^2.1.0",
     "@umijs/preset-react": "^1.5.6",
     "check-prettier": "^1.0.3",
     "del": "^5.1.0",
-    "dumi": "^1.0.30",
-    "enzyme": "^3.10.0",
+    "dumi": "^1.0.31",
+    "enzyme": "^3.11.0",
     "father": "^2.29.3",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.7",
+    "lint-staged": "^10.2.9",
     "prettier": "^2.0.5",
     "resize-observer-polyfill": "^1.5.1",
     "sylvanas": "^0.4.3",
@@ -100,7 +100,7 @@
     "umi": "^3.2.3"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.16.3"
   },
   "husky": {
     "hooks": {
