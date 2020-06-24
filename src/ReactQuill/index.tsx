@@ -46,10 +46,11 @@ import ReactQuillProps = ReactQuill.ReactQuillProps;
 import UnprivilegedEditor = ReactQuill.UnprivilegedEditor;
 
 export default (props: ReactQuillProps = { theme: 'snow', modules: {}, readOnly: false }) => {
-  const [generation, setGeneration] = useState(0);
   const codeRef = useRef(null);
   // 是否设置了value值，如果设置了value值则算受控组件
   const isControlled = 'value' in props;
+
+  useEffect(() => {}, props);
 
   return <div ref={codeRef}>{JSON.stringify(props)}</div>;
 };

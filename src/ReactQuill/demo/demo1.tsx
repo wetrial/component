@@ -5,10 +5,13 @@ import 'quill/dist/quill.snow.css';
 import './demo1.less';
 
 class Counter {
+  private quill: Quill;
+  private options: any;
+  private container;
   constructor(quill, options) {
     this.quill = quill;
     this.options = options;
-    this.container = document.querySelector(options.container);
+    this.container = options.container;
     quill.on('text-change', this.update.bind(this));
     this.update(); // Account for initial contents
   }
@@ -38,44 +41,54 @@ Quill.register('modules/counter', Counter);
 
 export default ({ children = 'text' }) => {
   const editor = useRef<Quill>(null);
-  const editorRef = useRef(null);
+  const editorRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // eslint-disable-next-line no-new
-    editor.current = new Quill(editorRef.current, {
+    editor.current = new Quill(editorRef.current.querySelector('.wt-quill-body'), {
       modules: {
-        toolbar: [
-          [
-            {
-              header: [1, 2, 3, 4, 5, 6, false],
+        // toolbar: [
+        //   [
+        //     {
+        //       header: [1, 2, 3, 4, 5, 6, false],
+        //     },
+        //   ],
+        //   [
+        //     {
+        //       align: [false, 'center', 'right'],
+        //     },
+        //     'bold',
+        //     'italic',
+        //     'underline',
+        //     'strike',
+        //   ],
+        //   [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+        //   [
+        //     { color: [] },
+        //     { background: [] },
+        //     { script: 'sub' },
+        //     { script: 'super' },
+        //     'blockquote',
+        //     'link',
+        //     'clean',
+        //     // 'code-block',
+        //   ],
+        //   // [{ direction: 'rtl' }], // text direction
+        //   // [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+        //   // [{ font: [] }],
+        //   // ['clean'],
+        // ],
+        toolbar: {
+          container: editorRef.current.querySelector('.wt-quill-toolbar'),
+          handlers: {
+            insertInput: (a, b, c) => {
+              const cursorPosition = editor.current.getSelection().index;
+              editor.current.insertText(cursorPosition, '★');
+              editor.current.setSelection(cursorPosition + 1, 1);
             },
-          ],
-          [
-            {
-              align: [false, 'center', 'right'],
-            },
-            'bold',
-            'italic',
-            'underline',
-            'strike',
-          ],
-          [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-          [
-            { color: [] },
-            { background: [] },
-            { script: 'sub' },
-            { script: 'super' },
-            'blockquote',
-            'link',
-            'clean',
-            // 'code-block',
-          ],
-          // [{ direction: 'rtl' }], // text direction
-          // [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-          // [{ font: [] }],
-          // ['clean'],
-        ],
+          },
+        },
         counter: {
-          container: '#editor-count',
+          container: editorRef.current.querySelector('.wt-quill-count'),
           unit: 'word',
         },
       },
@@ -85,9 +98,23 @@ export default ({ children = 'text' }) => {
   }, []);
   return (
     <div>
-      <div className="editor-container">
-        <div ref={editorRef}>{children}</div>
-        <div id="editor-count" />
+      <div ref={editorRef} className="wt-quill-container">
+        <div className="wt-quill-toolbar">
+          <select className="ql-header" defaultValue="" onChange={(e) => e.persist()}>
+            <option value="1">标题 1</option>
+            <option value="2">标题 2</option>
+            <option value="3">标题 3</option>
+            <option selected>普通文本</option>
+          </select>
+          <button type="button" className="ql-bold" />
+          <button type="button" className="ql-italic" />
+          <select className="ql-color" />
+          <button type="button" className="ql-insertInput">
+            insert input
+          </button>
+        </div>
+        <div className="wt-quill-body">{children}</div>
+        <div className="wt-quill-count" />
       </div>
       <hr />
       <Space>
