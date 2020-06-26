@@ -14,6 +14,8 @@ export { default as ProSelect } from './ProSelect';
 
 export { default as ProTable } from './ProTable';
 
+export { default as ReactQuill } from './ReactQuill';
+
 export { default as ScrollBar } from './ScrollBar';
 
 export { default as Table } from './Table';
