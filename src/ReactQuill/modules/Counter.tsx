@@ -1,13 +1,15 @@
 import Quill from 'quill';
+import Module from 'quill/core/module';
 
-export default class Counter {
+export default class Counter extends Module {
   private quill: Quill;
   private options: any;
-  private container;
+
   constructor(quill, options) {
+    super(quill, options);
     this.quill = quill;
     this.options = options;
-    this.container = options.container;
+
     quill.on('text-change', this.update.bind(this));
     this.update(); // Account for initial contents
   }
@@ -29,6 +31,6 @@ export default class Counter {
     if (length !== 1) {
       label += 's';
     }
-    this.container.innerText = `${length} ${label}`;
+    this.options.container.innerText = `${length} ${label}`;
   }
 }

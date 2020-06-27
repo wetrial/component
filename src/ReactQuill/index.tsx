@@ -56,14 +56,12 @@
 // };
 
 import Quill from 'quill';
-import { merge } from 'lodash';
+// import { merge } from 'lodash';
 import Icons from 'quill/ui/icons';
-import SnowTheme from 'quill/themes/snow';
+// import SnowTheme from 'quill/themes/snow';
 import Counter from './modules/Counter';
-
-// import InputIcon from './assets/icons/input.svg';
-
-// Icons.input = InputIcon;
+import InputModule from './modules/Input';
+import InputFormat from './formats/input';
 
 // SnowTheme.DEFAULTS = merge({}, SnowTheme.DEFAULTS, {
 //   modules: {
@@ -93,10 +91,13 @@ import Counter from './modules/Counter';
 //   },
 // });
 
-// Quill.register('ui/icons', Icons);
+Quill.register('ui/icons', Icons, true);
 
 // Quill.register('themes/snow', SnowTheme);
 
-// Quill.register('modules/counter', Counter);
+Quill.register('modules/counter', Counter, true);
+Quill.register('modules/input', InputModule, true);
+
+Quill.register('formats/input', InputFormat, true);
 
 export default Quill;

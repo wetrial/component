@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useRef, useEffect } from 'react';
 import { Button, Space } from 'antd';
 import { ReactQuill } from '@wetrial/component';
@@ -37,6 +38,7 @@ export default ({ children = 'text' }) => {
             'clean',
             // 'code-block',
             'input',
+            'my-thing',
           ],
           // [{ direction: 'rtl' }], // text direction
           // [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
@@ -53,6 +55,7 @@ export default ({ children = 'text' }) => {
         //     // },
         //   },
         // },
+        input: true,
         counter: {
           container: editorRef.current.querySelector('.wt-quill-count'),
           unit: 'word',
@@ -66,16 +69,18 @@ export default ({ children = 'text' }) => {
     <div>
       <div ref={editorRef} className="wt-quill-container">
         <div className="wt-quill-toolbar">
-          <select className="ql-header" defaultValue="" onChange={e => e.persist()}>
-            <option value="1">标题 1</option>
-            <option value="2">标题 2</option>
-            <option value="3">标题 3</option>
-            <option selected>普通文本</option>
-          </select>
-          <button title="粗体" type="button" className="ql-bold" />
-          <button title="斜体" type="button" className="ql-italic" />
-          <select title="颜色" className="ql-color" />
-          <button title="文本框" type="button" className="ql-input" />
+          <span className="ql-formats">
+            <select className="ql-header" defaultValue="" onChange={(e) => e.persist()}>
+              <option value="1">标题 1</option>
+              <option value="2">标题 2</option>
+              <option value="3">标题 3</option>
+              <option selected>普通文本</option>
+            </select>
+            <button title="粗体" type="button" className="ql-bold" />
+            <button title="斜体" type="button" className="ql-italic" />
+            <select title="颜色" className="ql-color" />
+            <button title="文本框" type="button" className="ql-input" />
+          </span>
         </div>
         <div className="wt-quill-body">{children}</div>
         <div className="wt-quill-count" />
