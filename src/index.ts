@@ -10,6 +10,8 @@ export { default as FooterToolbar } from './FooterToolbar';
 
 export { default as IconFont } from './IconFont';
 
+export { default as ProRadio } from './ProRadio';
+
 export { default as ProSelect } from './ProSelect';
 
 export { default as ProTable } from './ProTable';
