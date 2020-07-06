@@ -28,11 +28,19 @@ const RadioGroup = React.forwardRef<unknown, RadioGroupProps>((props, ref) => {
 
   const onRadioChange = (ev: RadioChangeEvent) => {
     const lastValue = value;
+    const { onChange } = props;
+    // 如果是从有值到置空
+    if (!ev) {
+      const v: any = undefined;
+      setValue(v);
+      onChange && onChange(v);
+      return;
+    }
     const val = ev.target.value;
     if (!('value' in props)) {
       setValue(val);
     }
-    const { onChange } = props;
+
     if (onChange && val !== lastValue) {
       onChange(ev);
     }

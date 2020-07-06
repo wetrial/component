@@ -16,9 +16,17 @@ legacy: /data-collect/pro-radio
 
 ## 案例
 
-### 基础使用
+### Radio 使用
+
+<code src="./demo/demo-radio.tsx" />
+
+### Radio.Group 基础使用
 
 <code src="./demo/demo1.tsx" />
+
+### Radio.Group 使用 options 数据源
+
+<code src="./demo/demo-options.tsx" />
 
 ## API
 
@@ -28,3 +36,5 @@ legacy: /data-collect/pro-radio
 | --------------------------------------------------------- | ---------------- | --------- | ------ |
 | allowClear                                                | 是否允许取消选择 | `boolean` | true   |
 | [更多 属性 ](https://ant.design/components/radio-cn/#API) |                  |           |        |
+
+> 如需单独使用 Radio，请使用 antd 的 Radio

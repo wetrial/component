@@ -27,20 +27,6 @@ const InternalRadio: React.ForwardRefRenderFunction<unknown, RadioProps> = (prop
     }
   };
 
-  const toggleClick = (e) => {
-    const value = context?.value;
-    if (e.target.value === value) {
-      if (context?.onChange) {
-        context.onChange({
-          target: {
-            ...e.target,
-            chedked: false,
-          },
-        } as RadioChangeEvent);
-      }
-    }
-  };
-
   const { prefixCls: customizePrefixCls, className, children, style, ...restProps } = props;
   const prefixCls = getPrefixCls('radio', customizePrefixCls);
   const radioProps: RadioProps = { ...restProps };
@@ -57,6 +43,44 @@ const InternalRadio: React.ForwardRefRenderFunction<unknown, RadioProps> = (prop
     [`${prefixCls}-wrapper-rtl`]: direction === 'rtl',
   });
 
+  const toggleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const oldValue = context?.value;
+    if (`${e.target['value']}` === `${oldValue}`) {
+      const v: any = undefined;
+      context && context.onChange && context.onChange(v);
+      // context &&
+      //   context.onChange &&
+      //   context.onChange({
+      //     nativeEvent: e.nativeEvent,
+      //     preventDefault: e.preventDefault,
+      //     stopPropagation: e.stopPropagation,
+      //     target: {
+      //       ...e.target,
+      //       checked: true,
+      //     },
+      //   });
+    }
+    radioProps.onClick && radioProps.onClick(e);
+    // if (context?.onChange) {
+    //   context.onChange({
+    //     target: {
+    //       ...e.target,
+    //       chedked: false,
+    //     },
+    //   } as RadioChangeEvent);
+    // }
+    // if (e.target.value === value) {
+    //   if (context?.onChange) {
+    //     context.onChange({
+    //       target: {
+    //         ...e.target,
+    //         chedked: false,
+    //       },
+    //     } as RadioChangeEvent);
+    //   }
+    // }
+  };
+
   return (
     // eslint-disable-next-line
     <label
@@ -65,6 +89,7 @@ const InternalRadio: React.ForwardRefRenderFunction<unknown, RadioProps> = (prop
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
+      {/* @ts-ignore */}
       <RcCheckbox
         {...radioProps}
         onClick={toggleClick}
