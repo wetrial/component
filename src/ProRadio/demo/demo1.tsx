@@ -4,7 +4,8 @@ import { RadioChangeEvent } from 'antd/es/radio';
 
 export default () => {
   const handleChange = (e: RadioChangeEvent) => {
-    console.log(e.target.value);
+    // e可能为undefined
+    console.log(e && e.target.value);
   };
   return (
     <ProRadio.Group onChange={handleChange}>

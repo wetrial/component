@@ -51,11 +51,11 @@
   ],
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
-    "@ant-design/pro-table": "^2.4.1",
+    "@ant-design/pro-table": "^2.4.2",
     "@wetrial/core": "^3.2.3",
     "@wetrial/hooks": "^3.0.1",
     "ahooks": "^2.1.0",
-    "antd": "^4.4.1",
+    "antd": "^4.4.2",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
     "lodash": "^4.17.15",

@@ -21,6 +21,7 @@ export type OptionsType<T = unknown> = ((e: React.MouseEvent<HTMLSpanElement>) =
 export interface ToolBarProps<T = unknown> {
   headerTitle?: React.ReactNode;
   toolBarRender?: () => React.ReactNode[];
+  simpleSearch?: (() => JSX.Element) | false | null;
   action: UseFetchDataAction;
   options?: OptionConfig<T> | false;
   className?: string;
@@ -59,8 +60,8 @@ const renderDefaultOption = <T, U = {}>(
 ) =>
   options &&
   Object.keys(options)
-    .filter(item => item)
-    .map(key => {
+    .filter((item) => item)
+    .map((key) => {
       const value = options[key];
       if (!value) {
         return null;
@@ -101,11 +102,12 @@ const renderDefaultOption = <T, U = {}>(
       }
       return null;
     })
-    .filter(item => item);
+    .filter((item) => item);
 
 const ToolBar = <T, U = {}>({
   headerTitle,
   toolBarRender,
+  simpleSearch,
   action,
   options = {
     density: true,
@@ -129,9 +131,10 @@ const ToolBar = <T, U = {}>({
     <div className={className}>
       <div className={`${className}-title`}>{headerTitle}</div>
       <div className={`${className}-option`}>
+        {simpleSearch && <Space>{simpleSearch()}</Space>}
         <Space>
           {actions
-            .filter(item => item)
+            .filter((item) => item)
             .map((node, index) => (
               <div
                 // eslint-disable-next-line react/no-array-index-key

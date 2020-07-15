@@ -89,9 +89,9 @@ const InternalRadio: React.ForwardRefRenderFunction<unknown, RadioProps> = (prop
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
-      {/* @ts-ignore */}
       <RcCheckbox
         {...radioProps}
+        onChange={(e: any) => radioProps.onChange && radioProps.onChange(e)}
         onClick={toggleClick}
         prefixCls={prefixCls}
         ref={mergedRef as any}

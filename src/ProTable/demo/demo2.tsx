@@ -43,7 +43,7 @@ const columns: ProColumns<TableListItem>[] = [
   {
     title: '标题',
     dataIndex: 'name',
-    render: _ => <a>{_}</a>,
+    render: (_) => <a>{_}</a>,
   },
   {
     title: '状态',
@@ -73,7 +73,7 @@ const columns: ProColumns<TableListItem>[] = [
       </a>,
       <TableDropdown
         key="other"
-        onSelect={key => window.alert(key)}
+        onSelect={(key) => window.alert(key)}
         menus={[
           { key: 'copy', name: '复制' },
           { key: 'delete', name: '删除' },
@@ -99,7 +99,7 @@ export default () => {
             }}
             type="link"
           >
-            简单搜索
+            更多
           </Button>
         </Col>
       </Row>
@@ -119,7 +119,7 @@ export default () => {
             }}
             type="link"
           >
-            简单搜索
+            折叠
           </Button>
         </Col>
       </Row>
@@ -141,10 +141,10 @@ export default () => {
       containerStyle={{ border: '3px solid red' }}
       tableAlertRender={() => <div>xxxxxxxxxxxxxxxxxx</div>}
       options={{ density: true, fullScreen: true, setting: true }}
-      onColumnsStateChange={map => {
+      onColumnsStateChange={(map) => {
         console.log(map);
       }}
-      onSizeChange={size => {
+      onSizeChange={(size) => {
         console.log(size);
       }}
     />

@@ -47,12 +47,13 @@ export interface ProTableProps<T, U extends { [key: string]: any }>
   /**
    * 自定义搜索 form 的输入
    */
-  renderSearch?: () => JSX.Element | false | null;
+  renderSearch?: (() => JSX.Element) | false | null;
   searchType?: 'simple' | 'advance';
+  headerTitle?: React.ReactNode;
   /**
    * 渲染操作栏
    */
-  toolBarRender?: ToolBarProps<T>['toolBarRender'];
+  toolBarRender?: ToolBarProps<T>['toolBarRender'] | false;
   /**
    * 默认的操作栏配置
    */
@@ -162,6 +163,7 @@ const genColumnList = <T, U = {}>(
 const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) => {
   const {
     columns: propsColumns = [],
+    headerTitle,
     toolBarRender = () => [],
     columnsStateMap,
     onColumnsStateChange,
@@ -269,7 +271,6 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
       getPopupContainer={() => ((rootRef.current || document.body) as any) as HTMLElement}
     >
       <div className={containerClassName} style={containerStyle} ref={rootRef}>
-        {searchType === 'advance' && renderSearch ? renderSearch() : null}
         <Card
           bordered={false}
           style={{
@@ -279,19 +280,27 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
             padding: 0,
           }}
         >
-          <Toolbar<T>
-            options={options}
-            action={action}
-            headerTitle={searchType === 'simple' && renderSearch ? renderSearch() : null}
-            toolBarRender={toolBarRender}
-          />
+          {toolBarRender !== false &&
+            (options !== false ||
+              headerTitle ||
+              toolBarRender ||
+              (renderSearch && searchType === 'simple')) && (
+              <Toolbar<T>
+                options={options}
+                action={action}
+                simpleSearch={searchType === 'simple' ? renderSearch : false}
+                headerTitle={headerTitle}
+                toolBarRender={toolBarRender}
+              />
+            )}
+          {searchType === 'advance' && renderSearch ? renderSearch() : null}
           {tableAlertRender ? tableAlertRender() : null}
           <ResizeableTalbe<T>
             {...rest}
             size={counter.tableSize}
             className={className}
             style={style}
-            columns={counter.columns.filter(item => {
+            columns={counter.columns.filter((item) => {
               const { key, dataIndex } = item;
               const columnKey = genColumnKey(key, dataIndex);
               if (!columnKey) {
@@ -315,7 +324,7 @@ const ProviderWarp = <T, U extends { [key: string]: any } = {}>(props: ProTableP
     <ConfigConsumer>
       {({ getPrefixCls }: ConfigConsumerProps) => (
         <IntlConsumer>
-          {value => (
+          {(value) => (
             <IntlProvider value={value}>
               <ErrorBoundary>
                 <ProTable className={getPrefixCls('pro-table')} {...props} />
