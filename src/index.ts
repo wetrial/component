@@ -1,6 +1,6 @@
 import { configIconUrl } from './IconFont';
 
-export { default as AvatarList } from './AvatarList';
+export { default as UserSelect } from './UserSelect';
 
 export { default as Ellipsis } from './Ellipsis';
 
