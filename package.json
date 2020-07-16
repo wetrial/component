@@ -51,10 +51,10 @@
   ],
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
-    "@ant-design/pro-table": "^2.4.2",
+    "@ant-design/pro-layout": "^6.2.4",
     "@wetrial/core": "^3.2.3",
     "@wetrial/hooks": "^3.0.1",
-    "ahooks": "^2.1.0",
+    "ahooks": "^2.2.0",
     "antd": "^4.4.2",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
@@ -69,8 +69,9 @@
   },
   "peerDependencies": {
     "@ant-design/icons": "*",
-    "@wetrial/component": "*",
+    "@ant-design/pro-layout": "*",
     "@wetrial/core": "*",
+    "@wetrial/hooks": "*",
     "ahooks": "*",
     "antd": "*",
     "classnames": "*",
@@ -92,7 +93,7 @@
     "@umijs/preset-react": "^1.5.14",
     "check-prettier": "^1.0.3",
     "del": "^5.1.0",
-    "dumi": "^1.0.31",
+    "dumi": "^1.0.33",
     "enzyme": "^3.11.0",
     "father": "^2.29.3",
     "husky": "^4.2.5",
@@ -101,7 +102,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "sylvanas": "^0.4.3",
     "typescript": "^3.8.3",
-    "umi": "^3.2.7"
+    "umi": "^3.2.10"
   },
   "engines": {
     "node": ">=12.16.3"

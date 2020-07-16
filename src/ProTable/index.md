@@ -22,7 +22,7 @@ pro-table 在 antd 的 table 上进行了一层封装，支持了一些预设，
 
 ### 基础使用
 
-<code src="./demo/demo1.tsx" />
+<code src="./demo/base.tsx" />
 
 ### 自定义容器样式及提示块
 
@@ -34,16 +34,15 @@ pro-table 在 antd 的 table 上进行了一层封装，支持了一些预设，
 
 ## Table
 
-| 参数                                                     | 说明                                                       | 类型                                                                        | 默认值 |
-| -------------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------- | ------ |
-| toolBarRender                                            | 渲染工具栏，支持返回一个 dom 数组，会自动增加 margin-right | `() => React.ReactNode[]`                                                   | -      | - |
-| containerClassName                                       | 设置容器元素的 class                                       | string                                                                      | -      |
-| containerStyle                                           | 设置容器元素的 style                                       | CSSProperties                                                               | -      |
-| options                                                  | table 的工具栏，设置为 false 可以关闭它                    | `{ fullScreen: true, reload:true, setting: true}`                           |
-| onSizeChange                                             | table 尺寸发生改变                                         | `(size: 'default' | 'middle' | 'small' | undefined) => void`                | -      |
-| columnsStateMap                                          | columns 的状态枚举                                         | `{[key: string]: { show:boolean, fixed: "right"|"left"} }`                  | -      |
-| onColumnsStateChange                                     | columns 状态发生改变                                       | `(props: {[key: string]: { show:boolean, fixed: "right"|"left"} }) => void` | -      |
-| [更多属性 ](https://ant.design/components/table-cn/#API) |                                                            |                                                                             |        |
+| 参数                                                     | 说明                                    | 类型                                                                        | 默认值 |
+| -------------------------------------------------------- | --------------------------------------- | --------------------------------------------------------------------------- | ------ |
+| containerClassName                                       | 设置容器元素的 class                    | string                                                                      | -      |
+| containerStyle                                           | 设置容器元素的 style                    | CSSProperties                                                               | -      |
+| options                                                  | table 的工具栏，设置为 false 可以关闭它 | `{ density: true, fullScreen:true, setting: true}`                          |
+| onSizeChange                                             | table 尺寸发生改变                      | `(size: 'default' | 'middle' | 'small' | undefined) => void`                | -      |
+| columnsStateMap                                          | columns 的状态枚举                      | `{[key: string]: { show:boolean, fixed: "right"|"left"} }`                  | -      |
+| onColumnsStateChange                                     | columns 状态发生改变                    | `(props: {[key: string]: { show:boolean, fixed: "right"|"left"} }) => void` | -      |
+| [更多属性 ](https://ant.design/components/table-cn/#API) |                                         |                                                                             |        |
 
 ## Columns
 
