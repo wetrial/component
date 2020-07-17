@@ -171,7 +171,7 @@ export default () => {
         type === 'simple' ? simpleSearchForm() : undefined,
         <Button key="1">新增</Button>,
         <Button key="2">导出</Button>,
-        <Button type="link" key="2">
+        <Button type="link" key="3">
           <Link to="/list/test/test">进入详情</Link>
         </Button>,
       ]}

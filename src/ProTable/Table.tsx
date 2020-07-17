@@ -266,15 +266,7 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
       <div className={containerClassName} style={containerStyle} ref={rootRef}>
         {searchType === 'advance' && renderSearch ? renderSearch() : null}
         {tableAlertRender ? tableAlertRender() : null}
-        <Card
-          bordered={false}
-          style={{
-            height: '100%',
-          }}
-          bodyStyle={{
-            padding: 0,
-          }}
-        >
+        <div style={{ position: 'relative' }}>
           <ResizeableTalbe<T>
             {...rest}
             size={counter.tableSize}
@@ -294,7 +286,7 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
             })}
           />
           {options !== false && <Toolbar<T> options={options} action={action} />}
-        </Card>
+        </div>
       </div>
     </ConfigProvider>
   );

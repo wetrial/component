@@ -3,7 +3,8 @@ import { Row, Col, Input, Button, Form, Space, Tooltip } from 'antd';
 import { MoreOutlined } from '@ant-design/icons';
 import { ProTable } from '@wetrial/component';
 import { LAYOUT_FORM_TWO, LAYOUT_COL_SEARCH_SIX } from '@wetrial/core/es/constants';
-import { ProColumns, TableDropdown } from '@wetrial/component/es/ProTable';
+import { ProColumns, TableDropdown, ColumnsState } from '@wetrial/component/es/ProTable';
+import { useLocalStorageState } from 'ahooks';
 import { useFormTable, formatFormTableParams } from '@wetrial/hooks';
 import { PageContainer } from '@ant-design/pro-layout';
 
@@ -49,6 +50,11 @@ const getList = async (data) => {
 
 export default () => {
   const [form] = Form.useForm();
+
+  const [columnStateMaps, setColumnStateMaps] = useLocalStorageState<{
+    [key: string]: ColumnsState;
+  }>('wetrial-testxxx', { name: { show: false } });
+
   const { tableProps, search, sorter } = useFormTable(
     (paginatedParams, formData) => getList(formatFormTableParams(paginatedParams, formData)),
     {
@@ -163,15 +169,13 @@ export default () => {
 
   return (
     <PageContainer
-      title="基础使用"
-      extra={[
-        type === 'simple' ? simpleSearchForm() : undefined,
-        <Button key="1">新增</Button>,
-        <Button key="2">导出</Button>,
-      ]}
+      title="自定义显示列(设置显示的列后，刷新看看效果)"
+      extra={[type === 'simple' ? simpleSearchForm() : undefined, <Button key="1">新增</Button>]}
     >
       <ProTable<TableListItem>
         columns={columns}
+        columnsStateMap={columnStateMaps}
+        onColumnsStateChange={setColumnStateMaps}
         rowKey="key"
         searchType={type}
         renderSearch={advanceSearchForm}
