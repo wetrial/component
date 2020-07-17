@@ -5,7 +5,7 @@ import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
 
 import { IntlProvider, IntlConsumer } from './component/intlContext';
 import Container from './container';
-import Toolbar, { OptionConfig, ToolBarProps } from './component/toolBar';
+import Toolbar, { OptionConfig } from './component/toolBar';
 
 import get, { useDeepCompareEffect, genColumnKey } from './component/util';
 import defaultRenderText, {
@@ -49,11 +49,6 @@ export interface ProTableProps<T, U extends { [key: string]: any }>
    */
   renderSearch?: (() => JSX.Element) | false | null;
   searchType?: 'simple' | 'advance';
-  headerTitle?: React.ReactNode;
-  /**
-   * 渲染操作栏
-   */
-  toolBarRender?: ToolBarProps<T>['toolBarRender'] | false;
   /**
    * 默认的操作栏配置
    */
@@ -163,8 +158,6 @@ const genColumnList = <T, U = {}>(
 const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) => {
   const {
     columns: propsColumns = [],
-    headerTitle,
-    toolBarRender = () => [],
     columnsStateMap,
     onColumnsStateChange,
     options,
@@ -271,6 +264,8 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
       getPopupContainer={() => ((rootRef.current || document.body) as any) as HTMLElement}
     >
       <div className={containerClassName} style={containerStyle} ref={rootRef}>
+        {searchType === 'advance' && renderSearch ? renderSearch() : null}
+        {tableAlertRender ? tableAlertRender() : null}
         <Card
           bordered={false}
           style={{
@@ -280,21 +275,6 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
             padding: 0,
           }}
         >
-          {toolBarRender !== false &&
-            (options !== false ||
-              headerTitle ||
-              toolBarRender ||
-              (renderSearch && searchType === 'simple')) && (
-              <Toolbar<T>
-                options={options}
-                action={action}
-                simpleSearch={searchType === 'simple' ? renderSearch : false}
-                headerTitle={headerTitle}
-                toolBarRender={toolBarRender}
-              />
-            )}
-          {searchType === 'advance' && renderSearch ? renderSearch() : null}
-          {tableAlertRender ? tableAlertRender() : null}
           <ResizeableTalbe<T>
             {...rest}
             size={counter.tableSize}
@@ -313,6 +293,7 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
               return true;
             })}
           />
+          {options !== false && <Toolbar<T> options={options} action={action} />}
         </Card>
       </div>
     </ConfigProvider>

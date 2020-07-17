@@ -1,6 +1,6 @@
 import React from 'react';
 import { SettingOutlined } from '@ant-design/icons';
-import { Divider, Space, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
 import ColumnSetting from '../columnSetting';
 import { useIntl, IntlType } from '../intlContext';
@@ -19,9 +19,6 @@ export interface OptionConfig<T> {
 export type OptionsType<T = unknown> = ((e: React.MouseEvent<HTMLSpanElement>) => void) | boolean;
 
 export interface ToolBarProps<T = unknown> {
-  headerTitle?: React.ReactNode;
-  toolBarRender?: () => React.ReactNode[];
-  simpleSearch?: (() => JSX.Element) | false | null;
   action: UseFetchDataAction;
   options?: OptionConfig<T> | false;
   className?: string;
@@ -105,9 +102,6 @@ const renderDefaultOption = <T, U = {}>(
     .filter((item) => item);
 
 const ToolBar = <T, U = {}>({
-  headerTitle,
-  toolBarRender,
-  simpleSearch,
   action,
   options = {
     density: true,
@@ -124,30 +118,10 @@ const ToolBar = <T, U = {}>({
       setting: true,
       intl,
     }) || [];
-  // 操作列表
-  const actions = toolBarRender ? toolBarRender() : [];
-
   return (
     <div className={className}>
-      <div className={`${className}-title`}>{headerTitle}</div>
       <div className={`${className}-option`}>
-        {simpleSearch && <Space>{simpleSearch()}</Space>}
-        <Space>
-          {actions
-            .filter((item) => item)
-            .map((node, index) => (
-              <div
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-              >
-                {node}
-              </div>
-            ))}
-        </Space>
-        <div className={`${className}-default-option`}>
-          {optionDom.length > 0 && actions.length > 0 && <Divider type="vertical" />}
-          <Space>{optionDom}</Space>
-        </div>
+        <div className={`${className}-default-option`}>{optionDom}</div>
       </div>
     </div>
   );
