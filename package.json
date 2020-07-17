@@ -19,7 +19,7 @@
   "repository": "https://github.com/wetrial/component",
   "homepage": "https://github.com/wetrial/component",
   "scripts": {
-    "start": "npm run dev",
+    "start": "cross-env REACT_APP_ENV=dev npm run dev",
     "dev": "dumi dev",
     "js": "node ./.ts2js.js",
     "build": "node ./scripts/clean-old-build.js && father build && tsc --declarationDir ./lib && tsc --declarationDir ./es && node ./scripts/build-wind-up.js",
@@ -92,6 +92,7 @@
     "@umijs/fabric": "^2.0.11",
     "@umijs/preset-react": "^1.5.14",
     "check-prettier": "^1.0.3",
+    "cross-env": "^7.0.2",
     "del": "^5.1.0",
     "dumi": "^1.0.33",
     "enzyme": "^3.11.0",

@@ -265,6 +265,7 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
     >
       <div className={containerClassName} style={containerStyle} ref={rootRef}>
         {searchType === 'advance' && renderSearch ? renderSearch() : null}
+        {tableAlertRender ? tableAlertRender() : null}
         <Card
           bordered={false}
           style={{
@@ -274,7 +275,6 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
             padding: 0,
           }}
         >
-          {tableAlertRender ? tableAlertRender() : null}
           <ResizeableTalbe<T>
             {...rest}
             size={counter.tableSize}

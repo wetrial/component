@@ -163,7 +163,7 @@ export default () => {
 
   return (
     <PageContainer
-      title="基础使用"
+      title="伸缩列"
       extra={[
         type === 'simple' ? simpleSearchForm() : undefined,
         <Button key="1">新增</Button>,
@@ -171,6 +171,7 @@ export default () => {
       ]}
     >
       <ProTable<TableListItem>
+        resizeable
         columns={columns}
         rowKey="key"
         searchType={type}

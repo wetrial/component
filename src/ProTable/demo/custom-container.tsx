@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Input, Button, Form, Space, Tooltip } from 'antd';
+import { Row, Col, Input, Button, Form, Space, Tooltip, Alert } from 'antd';
 import { MoreOutlined } from '@ant-design/icons';
 import { ProTable } from '@wetrial/component';
 import { LAYOUT_FORM_TWO, LAYOUT_COL_SEARCH_SIX } from '@wetrial/core/es/constants';
@@ -163,7 +163,7 @@ export default () => {
 
   return (
     <PageContainer
-      title="基础使用"
+      title="显示提示块"
       extra={[
         type === 'simple' ? simpleSearchForm() : undefined,
         <Button key="1">新增</Button>,
@@ -175,6 +175,9 @@ export default () => {
         rowKey="key"
         searchType={type}
         renderSearch={advanceSearchForm}
+        tableAlertRender={() => {
+          return <Alert message="自定义显示内容" type="info" showIcon />;
+        }}
         {...tableProps}
       />
     </PageContainer>

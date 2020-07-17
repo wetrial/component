@@ -24,18 +24,25 @@ pro-table 在 antd 的 table 上进行了一层封装，支持了一些预设，
 
 <code src="./demo/base.tsx" />
 
-### 自定义容器样式及提示块
+### 显示提示块
 
-<code src="./demo/demo2.tsx" />
+<code src="./demo/custom-container.tsx" />
 
 ### 伸缩列
 
-<code src="./demo/demo3.tsx" />
+<code src="./demo/resize-columns.tsx" />
 
-## Table
+### 有记忆功能的列表
+
+<code src="./demo/with-record.tsx" />
+
+## API
+
+### Table
 
 | 参数                                                     | 说明                                    | 类型                                                                        | 默认值 |
 | -------------------------------------------------------- | --------------------------------------- | --------------------------------------------------------------------------- | ------ |
+| resizeable                                               | 是否允许自定义列宽                      | `boolean`                                                                   | -      |
 | containerClassName                                       | 设置容器元素的 class                    | string                                                                      | -      |
 | containerStyle                                           | 设置容器元素的 style                    | CSSProperties                                                               | -      |
 | options                                                  | table 的工具栏，设置为 false 可以关闭它 | `{ density: true, fullScreen:true, setting: true}`                          |
@@ -44,14 +51,14 @@ pro-table 在 antd 的 table 上进行了一层封装，支持了一些预设，
 | onColumnsStateChange                                     | columns 状态发生改变                    | `(props: {[key: string]: { show:boolean, fixed: "right"|"left"} }) => void` | -      |
 | [更多属性 ](https://ant.design/components/table-cn/#API) |                                         |                                                                             |        |
 
-## Columns
+### Columns
 
 | 参数                                                         | 说明                           | 类型                                                                                                                       | 默认值 |
 | ------------------------------------------------------------ | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ------ |
 | valueType                                                    | 值的类型,相当于简化版的 render | `'money'、'option'、'date'、'dateRange'、'dateTime'、'dateTimeRange'、'time'、'index'、'indexBorder'、'progress'、'digit'` | 'text' |
 | [更多 属性 ](https://ant.design/components/table-cn/#Column) |                                |
 
-## valueType
+#### valueType
 
 现在支持的值如下
 

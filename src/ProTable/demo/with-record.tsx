@@ -1,5 +1,6 @@
 import React from 'react';
-import { Row, Col, Input, Button, Form, Space, Tooltip } from 'antd';
+import { useLocation, Link } from 'umi';
+import { Row, Col, Input, Button, Form, Space, Tooltip, Alert } from 'antd';
 import { MoreOutlined } from '@ant-design/icons';
 import { ProTable } from '@wetrial/component';
 import { LAYOUT_FORM_TWO, LAYOUT_COL_SEARCH_SIX } from '@wetrial/core/es/constants';
@@ -49,10 +50,12 @@ const getList = async (data) => {
 
 export default () => {
   const [form] = Form.useForm();
+  const { pathname } = useLocation();
   const { tableProps, search, sorter } = useFormTable(
     (paginatedParams, formData) => getList(formatFormTableParams(paginatedParams, formData)),
     {
       form,
+      cacheKey: pathname,
     },
   );
 
@@ -163,11 +166,14 @@ export default () => {
 
   return (
     <PageContainer
-      title="基础使用"
+      title="搜索、分页后切换页面再切换回来，会恢复之前的搜索状态"
       extra={[
         type === 'simple' ? simpleSearchForm() : undefined,
         <Button key="1">新增</Button>,
         <Button key="2">导出</Button>,
+        <Button type="link" key="2">
+          <Link to="/list/test/test">进入详情</Link>
+        </Button>,
       ]}
     >
       <ProTable<TableListItem>
@@ -175,6 +181,9 @@ export default () => {
         rowKey="key"
         searchType={type}
         renderSearch={advanceSearchForm}
+        tableAlertRender={() => {
+          return <Alert message="点击`进入详情` 再通过 `返回列表页` 返回" type="info" showIcon />;
+        }}
         {...tableProps}
       />
     </PageContainer>
