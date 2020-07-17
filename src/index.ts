@@ -6,8 +6,6 @@ export { default as Ellipsis } from './Ellipsis';
 
 export { default as Exception } from './Exception';
 
-export { default as FooterToolbar } from './FooterToolbar';
-
 export { default as IconFont } from './IconFont';
 
 export { default as ProRadio } from './ProRadio';
