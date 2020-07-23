@@ -1,6 +1,6 @@
 ---
 title: ProTable Table组件
-order: 10
+order: 20
 nav:
   title: 组件
   path: /list
