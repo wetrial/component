@@ -104,7 +104,6 @@ const ResizeableTalbe = <RecordType extends object = any>(
       }),
     };
   }
-  console.log(tableProps);
 
   return <Table {...restProps} {...tableProps} />;
 };
