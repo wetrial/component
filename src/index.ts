@@ -24,7 +24,7 @@ interface IWetrialComponentProps {
   /**
    * 字体图标文件地址
    */
-  iconFontUrl: string;
+  iconFontUrl: string | string[];
 }
 
 export const initComponent = (props: IWetrialComponentProps) => {
