@@ -36,13 +36,13 @@ const columns: ColumnType<TableListItem>[] = [
   {
     title: '标题',
     dataIndex: 'name',
-    width: 100,
-    render: _ => <a>{_}</a>,
+    width: 180,
+    render: (_) => <a>{_}</a>,
   },
   {
     title: '状态',
     dataIndex: 'status',
-    width: 100,
+    width: 120,
   },
   {
     title: '创建时间',
@@ -50,14 +50,25 @@ const columns: ColumnType<TableListItem>[] = [
     width: 200,
   },
   {
+    title: '金额',
+    width: 180,
+    dataIndex: 'money',
+  },
+  {
+    title: '进度',
+    width: 100,
+    dataIndex: 'progress',
+  },
+  {
     title: '更新时间',
-    width: 120,
+    width: 140,
     dataIndex: 'updatedAt',
   },
   {
     title: '操作',
     key: 'option',
-    width: 120,
+    fixed: 'right',
+    width: 70,
     render: () => [
       <a key="view" target="_blank" rel="noopener noreferrer">
         查看

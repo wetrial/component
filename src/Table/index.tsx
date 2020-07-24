@@ -77,8 +77,9 @@ const ResizeableTalbe = <RecordType extends object = any>(
     tableProps = {
       bordered: true,
       scroll: {
-        ...restProps.scroll,
         x: 'max-content',
+        scrollToFirstRowOnChange: true,
+        ...restProps.scroll,
       },
       components: {
         header: {
