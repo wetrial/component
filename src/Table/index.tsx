@@ -51,7 +51,7 @@ const getColumnKey = (key: string[] | string): string => {
 const ResizeableTalbe = <RecordType extends object = any>(
   props: IResizeableTableProps<RecordType>,
 ) => {
-  const { resizeable, columns = [], ...restProps } = props;
+  const { resizeable, columns = [], tableLayout = 'fixed', scroll, ...restProps } = props;
 
   const [columnSize, setColumnSize] = useState<IKeyValue<number>>(() => {
     return columns.reduce((size: any, column: any) => {
@@ -71,16 +71,18 @@ const ResizeableTalbe = <RecordType extends object = any>(
 
   let tableProps: any = {
     columns,
+    tableLayout,
+    scroll: {
+      x: 'max-content',
+      scrollToFirstRowOnChange: true,
+      ...scroll,
+    },
   };
 
   if (resizeable) {
     tableProps = {
+      ...tableProps,
       bordered: true,
-      scroll: {
-        x: 'max-content',
-        scrollToFirstRowOnChange: true,
-        ...restProps.scroll,
-      },
       components: {
         header: {
           cell: ResizeableTitle,
@@ -102,6 +104,7 @@ const ResizeableTalbe = <RecordType extends object = any>(
       }),
     };
   }
+  console.log(tableProps);
 
   return <Table {...restProps} {...tableProps} />;
 };
