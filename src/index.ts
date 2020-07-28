@@ -6,9 +6,9 @@ export { default as Ellipsis } from './Ellipsis';
 
 export { default as Exception } from './Exception';
 
-export { default as FooterToolbar } from './FooterToolbar';
-
 export { default as IconFont } from './IconFont';
+
+export { default as ProList } from './ProList';
 
 export { default as ProRadio } from './ProRadio';
 
@@ -24,7 +24,7 @@ interface IWetrialComponentProps {
   /**
    * 字体图标文件地址
    */
-  iconFontUrl: string;
+  iconFontUrl: string | string[];
 }
 
 export const initComponent = (props: IWetrialComponentProps) => {
