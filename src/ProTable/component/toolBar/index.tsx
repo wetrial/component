@@ -3,7 +3,6 @@ import { SettingOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
 import ColumnSetting from '../columnSetting';
-import { useIntl, IntlType } from '../intlContext';
 import { UseFetchDataAction } from '../../useFetchData';
 
 import './index.less';
@@ -24,21 +23,17 @@ export interface ToolBarProps<T = unknown> {
   className?: string;
 }
 
-const getButtonText = <T, U = {}>({
-  intl,
-}: OptionConfig<T> & {
-  intl: IntlType;
-}) => ({
+const getButtonText = <T, U = {}>() => ({
   fullScreen: {
-    text: intl.getMessage('tableToolBar.fullScreen', '全屏'),
+    text: '全屏',
     icon: <FullScreenIcon />,
   },
   setting: {
-    text: intl.getMessage('tableToolBar.columnSetting', '列设置'),
+    text: '列设置',
     icon: <SettingOutlined />,
   },
   density: {
-    text: intl.getMessage('tableToolBar.density', '表格密度'),
+    text: '表格密度',
     icon: <DensityIcon />,
   },
 });
@@ -51,9 +46,7 @@ const getButtonText = <T, U = {}>({
 const renderDefaultOption = <T, U = {}>(
   options: ToolBarProps<T>['options'],
   className: string,
-  defaultOptions: OptionConfig<T> & {
-    intl: IntlType;
-  },
+  defaultOptions: OptionConfig<T>,
 ) =>
   options &&
   Object.keys(options)
@@ -77,7 +70,7 @@ const renderDefaultOption = <T, U = {}>(
           </span>
         );
       }
-      const optionItem = getButtonText<T>(defaultOptions)[key];
+      const optionItem = getButtonText<T>()[key];
       if (optionItem) {
         return (
           <span
@@ -110,13 +103,11 @@ const ToolBar = <T, U = {}>({
   },
   className,
 }: ToolBarProps<T>) => {
-  const intl = useIntl();
   const optionDom =
     renderDefaultOption<T>(options, `${className}-item-icon`, {
       fullScreen: () => action.fullScreen && action.fullScreen(),
       density: true,
       setting: true,
-      intl,
     }) || [];
   return (
     <div className={className}>

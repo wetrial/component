@@ -3,7 +3,6 @@ import { ConfigProvider, Card, Space, Empty } from 'antd';
 import { ColumnsType, TableProps, ColumnType } from 'antd/es/table';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
 
-import { IntlProvider, IntlConsumer } from './component/intlContext';
 import Container from './container';
 import Toolbar, { OptionConfig } from './component/toolBar';
 
@@ -13,7 +12,6 @@ import defaultRenderText, {
   ProColumnsValueTypeFunction,
 } from './defaultRender';
 import { DensitySize } from './component/toolBar/DensityIcon';
-import ErrorBoundary from './component/ErrorBoundary';
 import ResizeableTalbe, { IResizeableTableProps } from '../Table';
 
 import './index.less';
@@ -296,15 +294,7 @@ const ProviderWarp = <T, U extends { [key: string]: any } = {}>(props: ProTableP
   <Container.Provider initialState={props}>
     <ConfigConsumer>
       {({ getPrefixCls }: ConfigConsumerProps) => (
-        <IntlConsumer>
-          {(value) => (
-            <IntlProvider value={value}>
-              <ErrorBoundary>
-                <ProTable className={getPrefixCls('pro-table')} {...props} />
-              </ErrorBoundary>
-            </IntlProvider>
-          )}
-        </IntlConsumer>
+        <ProTable className={getPrefixCls('pro-table')} {...props} />
       )}
     </ConfigConsumer>
   </Container.Provider>
