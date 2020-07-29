@@ -16,13 +16,20 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
   return (
     <div>
       <Select
+        showSearch={true}
         style={{ width: '200px' }}
-        dropdownRender={() => {
-          return userInfo.map((item) => {
-            return <div key={item.UserId}>{item.FullName}</div>;
-          });
-        }}
-      ></Select>
+        // dropdownRender={() => {
+        // }}
+      >
+        {userInfo.map((item) => {
+          return (
+            <Option key={item.UserId} value={item.FullName}>
+              <span>Avatar</span>
+              {item.FullName}
+            </Option>
+          );
+        })}
+      </Select>
     </div>
   );
 };
