@@ -2,6 +2,7 @@ import React, { useEffect, CSSProperties, useRef } from 'react';
 import { ConfigProvider, Card, Space, Empty } from 'antd';
 import { ColumnsType, TableProps, ColumnType } from 'antd/es/table';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
+import classnames from 'classnames';
 
 import Container from './container';
 import Toolbar, { OptionConfig } from './component/toolBar';
@@ -261,14 +262,19 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
     <ConfigProvider
       getPopupContainer={() => ((rootRef.current || document.body) as any) as HTMLElement}
     >
-      <div className={containerClassName} style={containerStyle} ref={rootRef}>
-        {searchType === 'advance' && renderSearch ? renderSearch() : null}
+      <div
+        className={classnames(containerClassName, className)}
+        style={containerStyle}
+        ref={rootRef}
+      >
+        {searchType === 'advance' && renderSearch ? (
+          <div className="advance-search">{renderSearch()}</div>
+        ) : null}
         {tableAlertRender ? tableAlertRender() : null}
         <div style={{ position: 'relative' }}>
           <ResizeableTalbe<T>
             {...rest}
             size={counter.tableSize}
-            className={className}
             style={style}
             columns={counter.columns.filter((item) => {
               const { key, dataIndex } = item;
