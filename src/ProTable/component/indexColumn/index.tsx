@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
+import { ConfigConsumer } from 'antd/lib/config-provider/context';
+import getPrefixCls from '../../../_utils/getPrefixCls';
 import './index.less';
 
 /**
@@ -9,7 +10,7 @@ import './index.less';
  */
 const IndexColumn: React.FC<{ border?: boolean }> = ({ border = false, children }) => (
   <ConfigConsumer>
-    {({ getPrefixCls }: ConfigConsumerProps) => {
+    {() => {
       const className = getPrefixCls('pro-table-index-column');
       return (
         <div

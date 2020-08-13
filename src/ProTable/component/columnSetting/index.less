@@ -1,8 +1,8 @@
-@import '~antd/es/style/themes/default.less';
+@import '../../index.less';
 
-@pro-column-setting-prefix-cls: ~'@{ant-prefix}-pro-table-column-setting';
+@pro-table-column-setting-prefix-cls: ~'@{wetrial-prefix}-pro-table-column-setting';
 
-.@{pro-column-setting-prefix-cls} {
+.@{pro-table-column-setting-prefix-cls} {
   width: auto;
   &-title {
     display: flex;
@@ -11,7 +11,7 @@
     height: 32px;
   }
 }
-.@{pro-column-setting-prefix-cls}-list {
+.@{pro-table-column-setting-prefix-cls}-list {
   display: flex;
   flex-direction: column;
   width: 168px;
@@ -37,7 +37,7 @@
       }
     }
     &:hover {
-      .@{pro-column-setting-prefix-cls}-list-item-option {
+      .@{pro-table-column-setting-prefix-cls}-list-item-option {
         display: block;
       }
     }

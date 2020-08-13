@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
-import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
+import { ConfigConsumer } from 'antd/lib/config-provider/context';
 import { PushpinOutlined, SettingOutlined, VerticalAlignMiddleOutlined } from '@ant-design/icons';
 import { Checkbox, Popover, Tooltip } from 'antd';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Container from '../../container';
+import getPrefixCls from '../../../_utils/getPrefixCls';
 import { ProColumns, ColumnsState } from '../../Table';
 import DnDItem from './DndItem';
 import './index.less';
@@ -239,7 +240,7 @@ const ColumnSetting = <T, U = {}>(props: ColumnSettingProps<T>) => {
 
   return (
     <ConfigConsumer>
-      {({ getPrefixCls }: ConfigConsumerProps) => {
+      {() => {
         const className = getPrefixCls('pro-table-column-setting');
         const toolBarClassName = getPrefixCls('pro-table-toolbar');
         return (

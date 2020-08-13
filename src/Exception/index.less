@@ -1,6 +1,9 @@
-@import '~antd/es/style/themes/default.less';
+@import '../style/index.less';
+@import '~antd/lib/list/style/index.less';
 
-.wetrial-exception {
+@wt-exception-prefix-cls: ~'@{wetrial-prefix}-exception';
+
+.@{wt-exception-prefix-cls} {
   display: flex;
   align-items: center;
   height: 80%;

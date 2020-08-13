@@ -8,7 +8,7 @@ import ToolBar, { ToolBarProps } from './toolBar';
 import useSelection from './hooks/useSelection';
 import useLazyKVMap, { findAllChildrenKeys } from './hooks/useLazyKVMap';
 import usePagination from './hooks/usePagination';
-import getPrefixCls from './util/getPrefixCls';
+import getPrefixCls from '../_utils/getPrefixCls';
 import ProListItem, { ItemProps, ProListSubItem } from './Item';
 
 import './index.less';

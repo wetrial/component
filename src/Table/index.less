@@ -1,9 +1,14 @@
+@import '../style/index.less';
+@import '~antd/lib/list/style/index.less';
+
+@wt-table-prefix-cls: ~'@{wetrial-prefix}-table';
+
 .react-resizable {
   position: relative;
   background-clip: padding-box;
 }
 
-.wetrial-resizable-handle {
+.@{wt-table-prefix-cls}-handle {
   position: absolute;
   width: 10px;
   height: 100%;

@@ -1,7 +1,8 @@
 import React, { useEffect, CSSProperties, useRef } from 'react';
 import { ConfigProvider, Card, Space, Empty } from 'antd';
 import { ColumnsType, TableProps, ColumnType } from 'antd/es/table';
-import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
+import { ConfigConsumer } from 'antd/lib/config-provider';
+import getPrefixCls from '../_utils/getPrefixCls';
 import classnames from 'classnames';
 
 import Container from './container';
@@ -299,9 +300,7 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
 const ProviderWarp = <T, U extends { [key: string]: any } = {}>(props: ProTableProps<T, U>) => (
   <Container.Provider initialState={props}>
     <ConfigConsumer>
-      {({ getPrefixCls }: ConfigConsumerProps) => (
-        <ProTable className={getPrefixCls('pro-table')} {...props} />
-      )}
+      {() => <ProTable className={getPrefixCls('pro-table')} {...props} />}
     </ConfigConsumer>
   </Container.Provider>
 );

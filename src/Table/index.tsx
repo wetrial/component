@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table } from 'antd';
 import { TableProps } from 'antd/es/table';
 import { Resizable } from 'react-resizable';
+import getPrefixCls from '../_utils/getPrefixCls';
 import { IKeyValue } from '@wetrial/core';
 
 import './index.less';
@@ -20,13 +21,15 @@ const ResizeableTitle = (props) => {
     return <th {...restProps} />;
   }
 
+  const className = getPrefixCls('table');
+
   return (
     <Resizable
       width={width}
       height={0}
       handle={
         <span
-          className="wetrial-resizable-handle"
+          className={`${className}-handle`}
           onClick={(e) => {
             e.stopPropagation();
           }}

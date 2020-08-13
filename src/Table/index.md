@@ -24,6 +24,10 @@ Table 在 antd 的 table 上进行了一层封装，支持了一些预设，并�
 
 <code src="./demo/demo1.tsx" />
 
+### 自定义列宽
+
+<code src="./demo/demo2.tsx" />
+
 ## Table
 
 | 参数                                                     | 说明           | 类型      | 默认值 |

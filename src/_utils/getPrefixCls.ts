@@ -1,5 +1,5 @@
 const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
-  const prefixCls = 'wetrial';
+  const prefixCls = 'ant-wt';
 
   if (customizePrefixCls) return customizePrefixCls;
 

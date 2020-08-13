@@ -7,7 +7,7 @@ import { ListGridType } from 'antd/es/list';
 import { ExpandableConfig } from 'antd/es/table/interface';
 import classNames from 'classnames';
 
-import getPrefixCls from './util/getPrefixCls';
+import getPrefixCls from '../_utils/getPrefixCls';
 
 export interface RenderExpandIconProps {
   prefixCls: string;

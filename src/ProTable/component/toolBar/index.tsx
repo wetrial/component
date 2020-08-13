@@ -1,7 +1,8 @@
 import React from 'react';
 import { SettingOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
-import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
+import { ConfigConsumer } from 'antd/lib/config-provider/context';
+import getPrefixCls from '../../../_utils/getPrefixCls';
 import ColumnSetting from '../columnSetting';
 import { UseFetchDataAction } from '../../useFetchData';
 
@@ -120,7 +121,7 @@ const ToolBar = <T, U = {}>({
 
 const WarpToolBar = <T, U = {}>(props: ToolBarProps<T>) => (
   <ConfigConsumer>
-    {({ getPrefixCls }: ConfigConsumerProps) => {
+    {() => {
       const className = getPrefixCls('pro-table-toolbar');
       return <ToolBar className={className} {...props} />;
     }}
