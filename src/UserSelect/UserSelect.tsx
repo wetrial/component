@@ -1,26 +1,64 @@
-import React from 'react';
-import { Select, Avatar } from 'antd';
+import React, { useState, useRef } from 'react';
+import { Select, Avatar, Divider, Input, Tooltip } from 'antd';
 // import Item from 'antd/lib/list/Item';
 import classNames from 'classnames';
 import './index.less';
 
 interface UserSelectProps {
-  message?: string;
-  data?: Array<any>;
   selectedData?: Array<any>;
-  UserInfo?: Array<any>;
+  dataSource?: Array<any>;
 }
 const { Option, OptGroup } = Select;
 
 const UserSelect: React.FC<UserSelectProps> = (props) => {
-  const { data, selectedData, userInfo } = props;
+  const { selectedData, dataSource } = props;
+  const [resultList, setResult] = useState([]);
+  const [selectVisible, changeShow] = useState(false);
+
+  const selectRef = useRef(null);
+
+  const addUser = (data) => {
+    setResult([...resultList, { id: data.key, value: data.value }]);
+  };
+  const removeUser = (data) => {
+    const newResult = resultList.filter((item) => item.id !== data.key);
+    setResult(newResult);
+  };
+
+  const showSelect = () => {
+    changeShow(true);
+    setTimeout(function () {
+      selectRef.current.focus();
+    }, 100);
+  };
+  const hideSelect = () => {
+    changeShow(false);
+  };
+
   return (
     <div>
+      <div>
+        <Avatar.Group>
+          {resultList.map((item) => {
+            return <Avatar key={item.value}>{item.value}</Avatar>;
+          })}
+          <Tooltip onClick={showSelect}>
+            <Avatar>+</Avatar>
+          </Tooltip>
+        </Avatar.Group>
+      </div>
+
       <Select
+        ref={selectRef}
         className="wt-select-default"
-        mode="tags"
+        mode="multiple"
         showSearch={true}
-        style={{ width: 'fit-content', minWidth: '80px' }}
+        open={selectVisible ? true : false}
+        style={{
+          width: 'fit-content',
+          minWidth: '150px',
+          display: selectVisible ? 'inline-block' : 'none',
+        }}
         dropdownRender={(menu) => {
           return (
             <div>
@@ -30,24 +68,32 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
           );
         }}
         tagRender={(props) => {
-          return <Avatar>{props.label[1]}</Avatar>;
+          return;
         }}
+        onSelect={(value, data) => {
+          addUser(data);
+          console.log(selectRef);
+        }}
+        onDeselect={(value, data) => {
+          removeUser(data);
+        }}
+        onBlur={hideSelect}
       >
-        {userInfo.map((item) => {
-          return (
-            <Option key={item.UserId} value={item.FullName}>
-              <Avatar>{item.FullName}</Avatar>
-              {item.FullName}
-            </Option>
-          );
-        })}
+        {dataSource &&
+          dataSource.length > 0 &&
+          dataSource.map((item) => {
+            return (
+              <Option key={item.UserId} value={item.FullName}>
+                <Avatar>{item.FullName}</Avatar>
+                {item.FullName}
+              </Option>
+            );
+          })}
       </Select>
     </div>
   );
 };
 
-UserSelect.defaultProps = {
-  message: 'Hello',
-};
+UserSelect.defaultProps = {};
 
 export default UserSelect;

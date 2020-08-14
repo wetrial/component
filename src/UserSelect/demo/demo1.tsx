@@ -1,12 +1,5 @@
 import React from 'react';
 import { UserSelect } from '@wetrial/component';
-const data = [
-  {
-    Id: '001',
-    Name: '张三',
-    Avatar: null,
-  },
-];
 
 const selectedData = ['001', '003'];
 
@@ -44,12 +37,5 @@ const UserInfo = [
 ];
 
 export default () => {
-  return (
-    <UserSelect
-      message="test text1"
-      data={data}
-      selectedData={selectedData}
-      userInfo={UserInfo}
-    ></UserSelect>
-  );
+  return <UserSelect selectedData={selectedData} dataSource={UserInfo}></UserSelect>;
 };
