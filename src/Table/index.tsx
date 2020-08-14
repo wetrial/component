@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table } from 'antd';
 import { TableProps } from 'antd/es/table';
 import { Resizable } from 'react-resizable';
+import getPrefixCls from '../_utils/getPrefixCls';
 import { IKeyValue } from '@wetrial/core';
 
 import './index.less';
@@ -20,13 +21,15 @@ const ResizeableTitle = (props) => {
     return <th {...restProps} />;
   }
 
+  const className = getPrefixCls('table');
+
   return (
     <Resizable
       width={width}
       height={0}
       handle={
         <span
-          className="wetrial-resizable-handle"
+          className={`${className}-handle`}
           onClick={(e) => {
             e.stopPropagation();
           }}
@@ -51,7 +54,7 @@ const getColumnKey = (key: string[] | string): string => {
 const ResizeableTalbe = <RecordType extends object = any>(
   props: IResizeableTableProps<RecordType>,
 ) => {
-  const { resizeable, columns = [], ...restProps } = props;
+  const { resizeable, columns = [], tableLayout = 'fixed', scroll, ...restProps } = props;
 
   const [columnSize, setColumnSize] = useState<IKeyValue<number>>(() => {
     return columns.reduce((size: any, column: any) => {
@@ -71,15 +74,18 @@ const ResizeableTalbe = <RecordType extends object = any>(
 
   let tableProps: any = {
     columns,
+    tableLayout,
+    scroll: {
+      x: 'max-content',
+      scrollToFirstRowOnChange: true,
+      ...scroll,
+    },
   };
 
   if (resizeable) {
     tableProps = {
+      ...tableProps,
       bordered: true,
-      scroll: {
-        ...restProps.scroll,
-        x: 'max-content',
-      },
       components: {
         header: {
           cell: ResizeableTitle,

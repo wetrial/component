@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react';
 import { Tooltip } from 'antd';
 import { TooltipProps } from 'antd/lib/tooltip';
 import classNames from 'classnames';
+import getPrefixCls from '../_utils/getPrefixCls';
 import './index.less';
 
 interface IEllipsisProps {
@@ -179,19 +180,19 @@ export default class Ellipsis extends Component<IEllipsisProps, any> {
     return this.bisection(th, mid, begin, end, text, shadowNode);
   };
 
-  handleContent = n => {
+  handleContent = (n) => {
     this.content = n;
   };
 
-  handleNode = n => {
+  handleNode = (n) => {
     this.node = n;
   };
 
-  handleShadow = n => {
+  handleShadow = (n) => {
     this.shadow = n;
   };
 
-  handleShadowChildren = n => {
+  handleShadowChildren = (n) => {
     this.shadowChildren = n;
   };
 
@@ -207,9 +208,10 @@ export default class Ellipsis extends Component<IEllipsisProps, any> {
       ...restProps
     } = this.props;
 
-    const cls = classNames('wetrial-ellipsis', className, {
-      'wetrial-lines': lines && !isSupportLineClamp,
-      'wetrial-line-clamp': lines && isSupportLineClamp,
+    const classPrefix = getPrefixCls('ellipsis');
+    const cls = classNames(classPrefix, className, {
+      [`${classPrefix}-lines`]: lines && !isSupportLineClamp,
+      [`${classPrefix}-line-clamp`]: lines && isSupportLineClamp,
     });
 
     if (!lines && !length) {

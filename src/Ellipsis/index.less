@@ -1,11 +1,16 @@
-.wetrial-ellipsis {
+@import '../style/index.less';
+@import '~antd/lib/list/style/index.less';
+
+@wt-ellipsis-prefix-cls: ~'@{wetrial-prefix}-ellipsis';
+
+.@{wt-ellipsis-prefix-cls} {
   display: inline-block;
   width: 100%;
   overflow: hidden;
   word-break: break-all;
 }
 
-.wetrial-lines {
+.@{wt-ellipsis-prefix-cls}-lines {
   position: relative;
   .shadow {
     position: absolute;
@@ -16,7 +21,7 @@
   }
 }
 
-.wetrial-line-clamp {
+.@{wt-ellipsis-prefix-cls}-line-clamp {
   position: relative;
   display: -webkit-box;
   overflow: hidden;

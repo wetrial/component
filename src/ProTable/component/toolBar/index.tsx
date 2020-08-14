@@ -1,9 +1,9 @@
 import React from 'react';
 import { SettingOutlined } from '@ant-design/icons';
-import { Divider, Space, Tooltip } from 'antd';
-import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
+import { Tooltip } from 'antd';
+import { ConfigConsumer } from 'antd/lib/config-provider/context';
+import getPrefixCls from '../../../_utils/getPrefixCls';
 import ColumnSetting from '../columnSetting';
-import { useIntl, IntlType } from '../intlContext';
 import { UseFetchDataAction } from '../../useFetchData';
 
 import './index.less';
@@ -19,28 +19,22 @@ export interface OptionConfig<T> {
 export type OptionsType<T = unknown> = ((e: React.MouseEvent<HTMLSpanElement>) => void) | boolean;
 
 export interface ToolBarProps<T = unknown> {
-  headerTitle?: React.ReactNode;
-  toolBarRender?: () => React.ReactNode[];
   action: UseFetchDataAction;
   options?: OptionConfig<T> | false;
   className?: string;
 }
 
-const getButtonText = <T, U = {}>({
-  intl,
-}: OptionConfig<T> & {
-  intl: IntlType;
-}) => ({
+const getButtonText = <T, U = {}>() => ({
   fullScreen: {
-    text: intl.getMessage('tableToolBar.fullScreen', '全屏'),
+    text: '全屏',
     icon: <FullScreenIcon />,
   },
   setting: {
-    text: intl.getMessage('tableToolBar.columnSetting', '列设置'),
+    text: '列设置',
     icon: <SettingOutlined />,
   },
   density: {
-    text: intl.getMessage('tableToolBar.density', '表格密度'),
+    text: '表格密度',
     icon: <DensityIcon />,
   },
 });
@@ -53,14 +47,12 @@ const getButtonText = <T, U = {}>({
 const renderDefaultOption = <T, U = {}>(
   options: ToolBarProps<T>['options'],
   className: string,
-  defaultOptions: OptionConfig<T> & {
-    intl: IntlType;
-  },
+  defaultOptions: OptionConfig<T>,
 ) =>
   options &&
   Object.keys(options)
-    .filter(item => item)
-    .map(key => {
+    .filter((item) => item)
+    .map((key) => {
       const value = options[key];
       if (!value) {
         return null;
@@ -79,7 +71,7 @@ const renderDefaultOption = <T, U = {}>(
           </span>
         );
       }
-      const optionItem = getButtonText<T>(defaultOptions)[key];
+      const optionItem = getButtonText<T>()[key];
       if (optionItem) {
         return (
           <span
@@ -101,11 +93,9 @@ const renderDefaultOption = <T, U = {}>(
       }
       return null;
     })
-    .filter(item => item);
+    .filter((item) => item);
 
 const ToolBar = <T, U = {}>({
-  headerTitle,
-  toolBarRender,
   action,
   options = {
     density: true,
@@ -114,37 +104,16 @@ const ToolBar = <T, U = {}>({
   },
   className,
 }: ToolBarProps<T>) => {
-  const intl = useIntl();
   const optionDom =
     renderDefaultOption<T>(options, `${className}-item-icon`, {
       fullScreen: () => action.fullScreen && action.fullScreen(),
       density: true,
       setting: true,
-      intl,
     }) || [];
-  // 操作列表
-  const actions = toolBarRender ? toolBarRender() : [];
-
   return (
     <div className={className}>
-      <div className={`${className}-title`}>{headerTitle}</div>
       <div className={`${className}-option`}>
-        <Space>
-          {actions
-            .filter(item => item)
-            .map((node, index) => (
-              <div
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-              >
-                {node}
-              </div>
-            ))}
-        </Space>
-        <div className={`${className}-default-option`}>
-          {optionDom.length > 0 && actions.length > 0 && <Divider type="vertical" />}
-          <Space>{optionDom}</Space>
-        </div>
+        <div className={`${className}-default-option`}>{optionDom}</div>
       </div>
     </div>
   );
@@ -152,7 +121,7 @@ const ToolBar = <T, U = {}>({
 
 const WarpToolBar = <T, U = {}>(props: ToolBarProps<T>) => (
   <ConfigConsumer>
-    {({ getPrefixCls }: ConfigConsumerProps) => {
+    {() => {
       const className = getPrefixCls('pro-table-toolbar');
       return <ToolBar className={className} {...props} />;
     }}

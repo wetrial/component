@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Button } from 'antd';
 import config from './typeConfig';
+import getPrefixCls from '../_utils/getPrefixCls';
 import './index.less';
 
 interface IExceptionProps {
@@ -43,7 +44,7 @@ class Exception extends Component<IExceptionProps, any> {
     } = this.props;
 
     const pageType = type in config ? type : '404';
-    const clsString = classNames('wetrial-exception', className);
+    const clsString = classNames(getPrefixCls('exception'), className);
     return (
       <div className={clsString} {...rest}>
         <div className="imgBlock">

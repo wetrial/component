@@ -1,11 +1,12 @@
 import React, { useEffect, CSSProperties, useRef } from 'react';
 import { ConfigProvider, Card, Space, Empty } from 'antd';
 import { ColumnsType, TableProps, ColumnType } from 'antd/es/table';
-import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider';
+import { ConfigConsumer } from 'antd/lib/config-provider';
+import getPrefixCls from '../_utils/getPrefixCls';
+import classnames from 'classnames';
 
-import { IntlProvider, IntlConsumer } from './component/intlContext';
 import Container from './container';
-import Toolbar, { OptionConfig, ToolBarProps } from './component/toolBar';
+import Toolbar, { OptionConfig } from './component/toolBar';
 
 import get, { useDeepCompareEffect, genColumnKey } from './component/util';
 import defaultRenderText, {
@@ -13,7 +14,6 @@ import defaultRenderText, {
   ProColumnsValueTypeFunction,
 } from './defaultRender';
 import { DensitySize } from './component/toolBar/DensityIcon';
-import ErrorBoundary from './component/ErrorBoundary';
 import ResizeableTalbe, { IResizeableTableProps } from '../Table';
 
 import './index.less';
@@ -47,12 +47,8 @@ export interface ProTableProps<T, U extends { [key: string]: any }>
   /**
    * 自定义搜索 form 的输入
    */
-  renderSearch?: () => JSX.Element | false | null;
+  renderSearch?: (() => JSX.Element) | false | null;
   searchType?: 'simple' | 'advance';
-  /**
-   * 渲染操作栏
-   */
-  toolBarRender?: ToolBarProps<T>['toolBarRender'];
   /**
    * 默认的操作栏配置
    */
@@ -162,7 +158,6 @@ const genColumnList = <T, U = {}>(
 const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) => {
   const {
     columns: propsColumns = [],
-    toolBarRender = () => [],
     columnsStateMap,
     onColumnsStateChange,
     options,
@@ -268,30 +263,21 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
     <ConfigProvider
       getPopupContainer={() => ((rootRef.current || document.body) as any) as HTMLElement}
     >
-      <div className={containerClassName} style={containerStyle} ref={rootRef}>
-        {searchType === 'advance' && renderSearch ? renderSearch() : null}
-        <Card
-          bordered={false}
-          style={{
-            height: '100%',
-          }}
-          bodyStyle={{
-            padding: 0,
-          }}
-        >
-          <Toolbar<T>
-            options={options}
-            action={action}
-            headerTitle={searchType === 'simple' && renderSearch ? renderSearch() : null}
-            toolBarRender={toolBarRender}
-          />
-          {tableAlertRender ? tableAlertRender() : null}
+      <div
+        className={classnames(containerClassName, className)}
+        style={containerStyle}
+        ref={rootRef}
+      >
+        {searchType === 'advance' && renderSearch ? (
+          <div className="advance-search">{renderSearch()}</div>
+        ) : null}
+        {tableAlertRender ? tableAlertRender() : null}
+        <div style={{ position: 'relative' }}>
           <ResizeableTalbe<T>
             {...rest}
             size={counter.tableSize}
-            className={className}
             style={style}
-            columns={counter.columns.filter(item => {
+            columns={counter.columns.filter((item) => {
               const { key, dataIndex } = item;
               const columnKey = genColumnKey(key, dataIndex);
               if (!columnKey) {
@@ -304,7 +290,8 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
               return true;
             })}
           />
-        </Card>
+          {options !== false && <Toolbar<T> options={options} action={action} />}
+        </div>
       </div>
     </ConfigProvider>
   );
@@ -313,17 +300,7 @@ const ProTable = <T extends {}, U extends object>(props: ProTableProps<T, U>) =>
 const ProviderWarp = <T, U extends { [key: string]: any } = {}>(props: ProTableProps<T, U>) => (
   <Container.Provider initialState={props}>
     <ConfigConsumer>
-      {({ getPrefixCls }: ConfigConsumerProps) => (
-        <IntlConsumer>
-          {value => (
-            <IntlProvider value={value}>
-              <ErrorBoundary>
-                <ProTable className={getPrefixCls('pro-table')} {...props} />
-              </ErrorBoundary>
-            </IntlProvider>
-          )}
-        </IntlConsumer>
-      )}
+      {() => <ProTable className={getPrefixCls('pro-table')} {...props} />}
     </ConfigConsumer>
   </Container.Provider>
 );

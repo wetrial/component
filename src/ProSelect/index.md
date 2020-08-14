@@ -24,6 +24,10 @@ legacy: /data-collect/select-plus
 
 <code src="./demo/demo2.tsx" />
 
+### Form 中使用
+
+<code src="./demo/use-in-form.tsx" />
+
 ### 案例
 
 ## API

@@ -2,7 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import { DownOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, Button } from 'antd';
-import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
+import { ConfigConsumer } from 'antd/lib/config-provider/context';
+import getPrefixCls from '../../../_utils/getPrefixCls';
 import './index.less';
 
 export interface DropdownProps {
@@ -27,10 +28,10 @@ const DropdownButton: React.FC<DropdownProps> = ({
   style,
 }) => (
   <ConfigConsumer>
-    {({ getPrefixCls }: ConfigConsumerProps) => {
+    {() => {
       const tempClassName = getPrefixCls('pro-table-dropdown');
       const menu = (
-        <Menu onClick={(params) => onSelect && onSelect(params.key)}>
+        <Menu onClick={(params) => onSelect && onSelect(params.key as string)}>
           {menus.map((item) => (
             <Menu.Item key={item.key}>{item.name}</Menu.Item>
           ))}
@@ -54,10 +55,10 @@ const TableDropdown: React.FC<DropdownProps> & { Button: typeof DropdownButton }
   menus = [],
 }) => (
   <ConfigConsumer>
-    {({ getPrefixCls }: ConfigConsumerProps) => {
+    {() => {
       const className = getPrefixCls('pro-table-dropdown');
       const menu = (
-        <Menu onClick={(params) => onSelect && onSelect(params.key)}>
+        <Menu onClick={(params) => onSelect && onSelect(params.key as string)}>
           {menus.map((item) => (
             <Menu.Item key={item.key}>{item.name}</Menu.Item>
           ))}
