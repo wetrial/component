@@ -1,7 +1,7 @@
 import React from 'react';
 import { UserSelect } from '@wetrial/component';
 
-const selectedData = ['001', '003'];
+const selected = ['001', '003'];
 
 const UserInfo = [
   {
@@ -35,7 +35,11 @@ const UserInfo = [
     Avatar: null,
   },
 ];
-
+const handleChange = (v) => {
+  console.log(v);
+};
 export default () => {
-  return <UserSelect selectedData={selectedData} dataSource={UserInfo}></UserSelect>;
+  return (
+    <UserSelect defaultValue={selected} dataSource={UserInfo} onChange={handleChange}></UserSelect>
+  );
 };
