@@ -19,3 +19,21 @@ legacy: /data-display/react-quill
 ### 基础使用
 
 <code src="./demo/demo1.tsx" />
+
+## slate
+
+- table 实现
+  https://github.com/bokuweb/slate-editable-table#readme
+
+- 文档地址
+  https://doodlewind.github.io/slate-doc-cn/
+
+- github 地址
+
+https://github.com/ianstormtaylor/slate#examples
+
+## quill
+
+- 第三方案例
+
+https://nsfi.github.io/ppfish-components/#/components/richEditor
