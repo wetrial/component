@@ -8,6 +8,7 @@ import { IKeyValue } from '@wetrial/core';
 interface UserSelectProps {
   defaultValue?: Array<string>;
   dataSource?: Array<any>;
+  onChange(value): any;
 }
 const { Option } = Select;
 
