@@ -40,7 +40,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
     changeShow(false);
   };
   const handleChange = (value, users) => {
-    const result = [];
+    const result = [] as Array<any>;
     users.map((item) => {
       result.push({ key: item.key, value: item.value, label: item.children[1] });
     });
@@ -106,7 +106,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
         onBlur={hidePanel}
         onChange={handleChange}
         filterOption={(input, option) =>
-          option.children[1].toLowerCase().indexOf(input.toLowerCase()) >= 0
+          option ? option.children[1].toLowerCase().indexOf(input.toLowerCase()) >= 0 : false
         }
       >
         {dataSource &&
