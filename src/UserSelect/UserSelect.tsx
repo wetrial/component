@@ -1,26 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Select, Avatar, Divider, Input, Button, Popover } from 'antd';
-// import Item from 'antd/lib/list/Item';
 import classNames from 'classnames';
 import './index.less';
-import { IKeyValue } from '@wetrial/core';
 
 interface UserSelectProps {
   defaultValue?: Array<string>;
   dataSource?: Array<any>;
-  onChange(value): any;
+  onChange?: (value) => any;
+  value: any;
 }
 const { Option } = Select;
 
 const UserSelect: React.FC<UserSelectProps> = (props) => {
-  const { defaultValue, dataSource, onChange } = props;
+  const { defaultValue, dataSource, onChange, value } = props;
   const [selectedData, setSelected] = useState<any[]>([]);
   const [selectVisible, changeShow] = useState(false);
-  const selectRef = useRef<any>();
+
+  const refSelect = useRef<any>();
+  let defaultList;
+  defaultValue ? (defaultList = defaultValue) : (defaultList = value);
 
   useEffect(() => {
     const initValue = [] as Array<any>;
-    defaultValue?.map((i) => {
+    defaultList?.map((i) => {
       dataSource?.map((item) => {
         if (item.UserId === i) {
           initValue.push({ key: item.UserId, value: item.UserId, label: item.FullName });
@@ -28,24 +30,25 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
       });
     });
     setSelected(initValue);
-  }, [defaultValue]);
+  }, [defaultList]);
 
   const showPanel = () => {
     changeShow(true);
     setTimeout(function () {
-      selectRef.current.focus();
+      refSelect.current.focus();
     }, 100);
   };
   const hidePanel = () => {
     changeShow(false);
   };
-  const handleChange = (value, users) => {
+  const handleChange = (val, users) => {
     const result = [] as Array<any>;
     users.map((item) => {
       result.push({ key: item.key, value: item.value, label: item.children[1] });
     });
     setSelected(result);
-    onChange(value);
+    console.log(val);
+    onChange && onChange(val);
   };
 
   return (
@@ -80,13 +83,12 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
       </div>
 
       <Select
-        ref={selectRef}
+        ref={refSelect}
         className="wt-select-default"
         mode="multiple"
         showSearch={true}
         open={selectVisible ? true : false}
-        defaultValue={defaultValue}
-        // labelInValue
+        defaultValue={defaultList}
         style={{
           width: 'fit-content',
           minWidth: '150px',

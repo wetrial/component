@@ -45,5 +45,24 @@ const onFinish = (values) => {
 };
 
 export default () => {
-  return <UserSelect value={selected1} dataSource={UserInfo} onChange={handleChange}></UserSelect>;
+  return (
+    //<UserSelect defaultValue={selected} dataSource={UserInfo} onChange={handleChange}></UserSelect>
+
+    <Form name="basic" onFinish={onFinish} initialValues={{ userSelect: ['001'] }}>
+      <Form.Item name="userSelect" label="UserSelect">
+        <UserSelect
+          //defaultValue={selected}
+          //value={selected1}
+          dataSource={UserInfo}
+          onChange={handleChange}
+        ></UserSelect>
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+  );
 };

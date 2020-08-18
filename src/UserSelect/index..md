@@ -18,6 +18,11 @@ legacy: /data-display/userselect
 
 ### 简单案例
 
+#### 直接使用
+
 <code src="./demo/demo1.tsx" />
 
+#### 在表单中使用
+
+<code src="./demo/demo2.tsx" />
 ## API
