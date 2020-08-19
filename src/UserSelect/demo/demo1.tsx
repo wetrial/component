@@ -37,7 +37,7 @@ const UserInfo = [
   },
 ];
 const handleChange = (v) => {
-  //console.log(v);
+  console.log(v);
 };
 
 const onFinish = (values) => {
@@ -45,5 +45,14 @@ const onFinish = (values) => {
 };
 
 export default () => {
-  return <UserSelect value={selected1} dataSource={UserInfo} onChange={handleChange}></UserSelect>;
+  return (
+    <UserSelect
+      cardInfo={(k) => {
+        return <div>这里自定义显示，k是用户id：{k}</div>;
+      }}
+      value={selected1}
+      dataSource={UserInfo}
+      onChange={handleChange}
+    ></UserSelect>
+  );
 };

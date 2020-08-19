@@ -1,36 +1,43 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Select, Avatar, Divider, Input, Button, Popover } from 'antd';
-import classNames from 'classnames';
-import './index.less';
+import { Select, Avatar, Button, Popover } from 'antd';
 
+import './index.less';
+import { IKeyValue } from '@wetrial/core';
+
+interface fields {
+  id: string;
+  name: string;
+  avatar: string;
+}
 interface UserSelectProps {
   defaultValue?: Array<string>;
-  dataSource?: Array<any>;
-  onChange?: (value) => any;
-  value: any;
+  dataSource?: Array<IKeyValue<any>>;
+  onChange?: (value) => void;
+  value: Array<string>;
+  fields: fields;
+  cardInfo: (key) => void;
 }
 const { Option } = Select;
 
 const UserSelect: React.FC<UserSelectProps> = (props) => {
-  const { defaultValue, dataSource, onChange, value } = props;
-  const [selectedData, setSelected] = useState<any[]>([]);
+  const { defaultValue, dataSource, onChange, value, fields, cardInfo } = props;
+  const [avaList, setAva] = useState<any[]>([]);
   const [selectVisible, changeShow] = useState(false);
-
+  const [values, setValues] = useState<any[]>(defaultValue ? defaultValue : value);
   const refSelect = useRef<any>();
-  let defaultList;
-  defaultValue ? (defaultList = defaultValue) : (defaultList = value);
 
   useEffect(() => {
-    const initValue = [] as Array<any>;
-    defaultList?.map((i) => {
+    const initAva = [] as Array<any>;
+    values?.map((i) => {
       dataSource?.map((item) => {
-        if (item.UserId === i) {
-          initValue.push({ key: item.UserId, value: item.UserId, label: item.FullName });
+        if (item[fields.id] === i) {
+          initAva.push({ key: item[fields.id], value: item[fields.id], label: item[fields.name] });
         }
       });
     });
-    setSelected(initValue);
-  }, [defaultList]);
+    setAva(initAva);
+    triggerChange();
+  }, [values]);
 
   const showPanel = () => {
     changeShow(true);
@@ -41,21 +48,27 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
   const hidePanel = () => {
     changeShow(false);
   };
+  const removeUser = (value) => {
+    setValues(values.filter((item) => item !== value));
+  };
   const handleChange = (val, users) => {
-    const result = [] as Array<any>;
+    const ava = [] as Array<any>;
     users.map((item) => {
-      result.push({ key: item.key, value: item.value, label: item.children[1] });
+      ava.push({ key: item.key, value: item.value, label: item.children[1] });
     });
-    setSelected(result);
-    console.log(val);
-    onChange && onChange(val);
+    setAva(ava);
+    setValues(val);
+  };
+
+  const triggerChange = () => {
+    onChange && onChange(values);
   };
 
   return (
     <div>
       <div>
         <Avatar.Group>
-          {selectedData.map((item) => {
+          {avaList.map((item) => {
             return (
               <Popover
                 key={item.key}
@@ -63,8 +76,9 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
                 content={() => {
                   return (
                     <div className="user-card">
+                      {cardInfo(item.key)}
                       <div>
-                        <Button danger size="small">
+                        <Button danger size="small" onClick={removeUser.bind(null, item.key)}>
                           移除
                         </Button>
                       </div>
@@ -88,19 +102,14 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
         mode="multiple"
         showSearch={true}
         open={selectVisible ? true : false}
-        defaultValue={defaultList}
+        value={values}
         style={{
           width: 'fit-content',
           minWidth: '150px',
           display: selectVisible ? 'block' : 'none',
         }}
         dropdownRender={(menu) => {
-          return (
-            <div>
-              {menu}
-              <div> footer</div>
-            </div>
-          );
+          return <div>{menu}</div>;
         }}
         tagRender={(props) => {
           return <></>;
@@ -126,6 +135,12 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
   );
 };
 
-UserSelect.defaultProps = {};
+UserSelect.defaultProps = {
+  fields: {
+    id: 'UserId',
+    name: 'FullName',
+    avatar: 'Avatar',
+  },
+};
 
 export default UserSelect;
