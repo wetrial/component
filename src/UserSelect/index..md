@@ -22,4 +22,5 @@ legacy: /data-display/userselect
 
 ### 在表单中使用
 
+<code src="./demo/demo2.tsx" />
 ## API

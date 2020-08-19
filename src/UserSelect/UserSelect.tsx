@@ -79,7 +79,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
                 content={() => {
                   return (
                     <div className="user-card">
-                      {cardInfo(item.key)}
+                      {cardInfo && cardInfo(item.key)}
                       <div>
                         <Button danger size="small" onClick={removeUser.bind(null, item.key)}>
                           移除
@@ -139,6 +139,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
 };
 
 UserSelect.defaultProps = {
+  cardInfo: undefined,
   fields: {
     id: 'UserId',
     name: 'FullName',
