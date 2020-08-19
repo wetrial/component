@@ -24,3 +24,6 @@ legacy: /data-display/userselect
 
 <code src="./demo/demo2.tsx" />
 ## API
+|参数|类型|默认值|说明|
+|----|----|----|----|
+|参数|类型|默认值|说明|
