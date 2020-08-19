@@ -25,7 +25,10 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
   const [selectVisible, changeShow] = useState(false);
   const [values, setValues] = useState<any[]>(defaultValue ? defaultValue : value);
   const refSelect = useRef<any>();
-
+  let firstLoad = false;
+  useEffect(() => {
+    firstLoad = true;
+  }, []);
   useEffect(() => {
     const initAva = [] as Array<any>;
     values?.map((i) => {
@@ -61,7 +64,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
   };
 
   const triggerChange = () => {
-    onChange && onChange(values);
+    onChange && !firstLoad && onChange(values);
   };
 
   return (
