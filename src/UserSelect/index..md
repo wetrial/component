@@ -23,7 +23,11 @@ legacy: /data-display/userselect
 ### 在表单中使用
 
 <code src="./demo/demo2.tsx" />
+
 ## API
-|参数|类型|默认值|说明|
-|----|----|----|----|
-|参数|类型|默认值|说明|
+
+| 参数         | 类型  | 默认值 | 说明   |
+| ------------ | ----- | ------ | ------ |
+| dataSource   | array | 无     | 数据源 |
+| value        | array | 无     | 当前值 |
+| defaultValue | array | 无     | 默认值 |

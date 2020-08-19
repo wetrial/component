@@ -9,7 +9,7 @@ const UserInfo = [
     UserId: '001',
     FullName: '张三',
     RoleName: '管理员',
-    Avatar: null,
+    Avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
   },
   {
     UserId: '002',

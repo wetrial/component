@@ -34,7 +34,12 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
     values?.map((i) => {
       dataSource?.map((item) => {
         if (item[fields.id] === i) {
-          initAva.push({ key: item[fields.id], value: item[fields.id], label: item[fields.name] });
+          initAva.push({
+            key: item[fields.id],
+            value: item[fields.id],
+            label: item[fields.name],
+            avatar: item[fields.avatar],
+          });
         }
       });
     });
@@ -89,7 +94,11 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
                   );
                 }}
               >
-                <Avatar>{item.label}</Avatar>
+                {item.avatar ? (
+                  <Avatar src={item.avatar}>{item.label}</Avatar>
+                ) : (
+                  <Avatar>{item.label}</Avatar>
+                )}
               </Popover>
             );
           })}
@@ -127,9 +136,14 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
           dataSource.length > 0 &&
           dataSource.map((item) => {
             return (
-              <Option key={item.UserId} value={item.UserId}>
-                <Avatar>{item.FullName}</Avatar>
-                {item.FullName}
+              <Option key={item[fields.id]} value={item[fields.id]}>
+                {item[fields.avatar] ? (
+                  <Avatar src={item[fields.avatar]}>{item[fields.name]}</Avatar>
+                ) : (
+                  <Avatar>{item[fields.name]}</Avatar>
+                )}
+
+                {item[fields.name]}
               </Option>
             );
           })}
