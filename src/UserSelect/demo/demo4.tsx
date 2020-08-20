@@ -1,13 +1,13 @@
 import React from 'react';
+import { Form, Button } from 'antd';
 import { UserSelect } from '@wetrial/component';
 
-const selected = ['001', '003'];
 const data = [
   {
     UserId: '001',
     FullName: '张三',
     RoleName: '管理员',
-    Avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+    Avatar: null,
   },
   {
     UserId: '002',
@@ -38,6 +38,22 @@ const handleChange = (v) => {
   console.log(v);
 };
 
+const onFinish = (values) => {
+  console.log('Success:', values);
+};
+
 export default () => {
-  return <UserSelect value={selected} dataSource={data} onChange={handleChange}></UserSelect>;
+  return (
+    <Form name="basic" onFinish={onFinish} initialValues={{ userSelect: ['001'] }}>
+      <Form.Item name="userSelect" label="UserSelect">
+        <UserSelect dataSource={data} onChange={handleChange}></UserSelect>
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+  );
 };

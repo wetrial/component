@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Select, Avatar, Button, Popover } from 'antd';
-
+import { PlusOutlined } from '@ant-design/icons';
 import './index.less';
 import { IKeyValue } from '@wetrial/core';
 
@@ -11,60 +11,90 @@ interface fields {
 }
 interface UserSelectProps {
   defaultValue?: Array<string>;
-  dataSource?: Array<IKeyValue<any>>;
+  dataSource: Array<IKeyValue<any>>;
   onChange?: (value) => void;
-  value: Array<string>;
-  fields: fields;
-  cardInfo: (key) => void;
+  value?: Array<string> | string | undefined;
+  fields?: fields | undefined;
+  cardRender?: (key) => void;
+  multiple?: boolean;
 }
 const { Option } = Select;
 
 const UserSelect: React.FC<UserSelectProps> = (props) => {
-  const { defaultValue, dataSource, onChange, value, fields, cardInfo } = props;
+  const { defaultValue, dataSource, onChange, value, fields, cardRender, multiple } = props;
   const [avaList, setAva] = useState<any[]>([]);
   const [selectVisible, changeShow] = useState(false);
-  const [values, setValues] = useState<any[]>(defaultValue ? defaultValue : value);
+  const [values, setValues] = useState<any>(defaultValue ? defaultValue : value);
   const refSelect = useRef<any>();
   let firstLoad = false;
   useEffect(() => {
     firstLoad = true;
   }, []);
-  useEffect(() => {
-    const initAva = [] as Array<any>;
-    values?.map((i) => {
+  if (!multiple) {
+    useEffect(() => {
+      const initAva = [] as Array<any>;
       dataSource?.map((item) => {
-        if (item[fields.id] === i) {
+        if (fields && item[fields.id] === values) {
           initAva.push({
-            key: item[fields.id],
-            value: item[fields.id],
-            label: item[fields.name],
-            avatar: item[fields.avatar],
+            key: fields ? item[fields.id] : item.UserId,
+            value: fields ? item[fields.id] : item.UserId,
+            label: fields ? item[fields.name] : item.FullName,
+            avatar: fields ? item[fields.avatar] : item.Avatar,
           });
         }
       });
-    });
-    setAva(initAva);
-    triggerChange();
-  }, [values]);
+      setAva(initAva);
+      triggerChange();
+    }, [values]);
+  } else {
+    useEffect(() => {
+      const initAva = [] as Array<any>;
+      values?.map((i) => {
+        dataSource?.map((item) => {
+          if (fields && item[fields.id] === i) {
+            initAva.push({
+              key: fields ? item[fields.id] : item.UserId,
+              value: fields ? item[fields.id] : item.UserId,
+              label: fields ? item[fields.name] : item.FullName,
+              avatar: fields ? item[fields.avatar] : item.Avatar,
+            });
+          }
+        });
+      });
+      setAva(initAva);
+      triggerChange();
+    }, [values]);
+  }
 
   const showPanel = () => {
     changeShow(true);
     setTimeout(function () {
-      refSelect.current.focus();
+      refSelect?.current?.focus();
     }, 100);
   };
   const hidePanel = () => {
     changeShow(false);
   };
   const removeUser = (value) => {
-    setValues(values.filter((item) => item !== value));
+    if (!multiple) {
+      setValues(undefined);
+    } else {
+      setValues(values.filter((item) => item !== value));
+    }
   };
   const handleChange = (val, users) => {
-    const ava = [] as Array<any>;
-    users.map((item) => {
-      ava.push({ key: item.key, value: item.value, label: item.children[1] });
-    });
-    setAva(ava);
+    if (!multiple) {
+      const ava = [] as Array<any>;
+      ava.push({ key: users.key, value: users.value, label: users.children[1] });
+      setAva(ava);
+    } else {
+      const ava = [] as Array<any>;
+      users.map((item) => {
+        ava.push({ key: item.key, value: item.value, label: item.children[1] });
+      });
+      setAva(ava);
+    }
+
     setValues(val);
   };
 
@@ -84,7 +114,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
                 content={() => {
                   return (
                     <div className="user-card">
-                      {cardInfo && cardInfo(item.key)}
+                      {cardRender && cardRender(item.key)}
                       <div>
                         <Button danger size="small" onClick={removeUser.bind(null, item.key)}>
                           移除
@@ -103,7 +133,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
             );
           })}
           <span onClick={showPanel}>
-            <Avatar>+</Avatar>
+            <Avatar icon={<PlusOutlined />} />
           </span>
         </Avatar.Group>
       </div>
@@ -111,7 +141,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
       <Select
         ref={refSelect}
         className="wt-select-default"
-        mode="multiple"
+        mode={multiple ? 'multiple' : undefined}
         showSearch={true}
         open={selectVisible ? true : false}
         value={values}
@@ -136,14 +166,17 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
           dataSource.length > 0 &&
           dataSource.map((item) => {
             return (
-              <Option key={item[fields.id]} value={item[fields.id]}>
-                {item[fields.avatar] ? (
+              <Option
+                key={fields ? item[fields.id] : item.UserId}
+                value={fields ? item[fields.id] : item.UserId}
+              >
+                {fields && item[fields.avatar] ? (
                   <Avatar src={item[fields.avatar]}>{item[fields.name]}</Avatar>
                 ) : (
-                  <Avatar>{item[fields.name]}</Avatar>
+                  <Avatar>{fields ? item[fields.name] : item.FullName}</Avatar>
                 )}
 
-                {item[fields.name]}
+                {fields && item[fields.name]}
               </Option>
             );
           })}
@@ -153,12 +186,14 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
 };
 
 UserSelect.defaultProps = {
-  cardInfo: undefined,
+  cardRender: undefined,
   fields: {
     id: 'UserId',
     name: 'FullName',
     avatar: 'Avatar',
   },
+  multiple: true,
+  value: undefined,
 };
 
 export default UserSelect;

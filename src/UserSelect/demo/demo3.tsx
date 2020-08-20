@@ -39,5 +39,14 @@ const handleChange = (v) => {
 };
 
 export default () => {
-  return <UserSelect value={selected} dataSource={data} onChange={handleChange}></UserSelect>;
+  return (
+    <UserSelect
+      cardRender={(id) => {
+        return <div>这里自定义显示，通过用户id查找对应信息放在这里{id}</div>;
+      }}
+      value={selected}
+      dataSource={data}
+      onChange={handleChange}
+    ></UserSelect>
+  );
 };
