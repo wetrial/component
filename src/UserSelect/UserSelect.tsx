@@ -10,21 +10,21 @@ interface fields {
   avatar: string;
 }
 interface UserSelectProps {
-  defaultValue?: Array<string>;
-  dataSource: Array<IKeyValue<any>>;
+  defaultValue?: string[];
+  dataSource: IKeyValue<any>[];
   onChange?: (value) => void;
-  value?: Array<string> | string | undefined;
+  value?: string[] | string | undefined;
   fields?: fields | undefined;
   cardRender?: (key) => void;
   multiple?: boolean;
 }
 const { Option } = Select;
 
-const UserSelect: React.FC<UserSelectProps> = (props) => {
+const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> = (props) => {
   const { defaultValue, dataSource, onChange, value, fields, cardRender, multiple } = props;
   const [avaList, setAva] = useState<any[]>([]);
   const [selectVisible, changeShow] = useState(false);
-  const [values, setValues] = useState<any>(defaultValue ? defaultValue : value);
+  const [values, setValues] = useState<any>(defaultValue || value);
   const refSelect = useRef<any>();
   let firstLoad = false;
   useEffect(() => {
@@ -32,7 +32,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
   }, []);
   if (!multiple) {
     useEffect(() => {
-      const initAva = [] as Array<any>;
+      const initAva = [] as any[];
       dataSource?.map((item) => {
         if (fields && item[fields.id] === values) {
           initAva.push({
@@ -48,7 +48,7 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
     }, [values]);
   } else {
     useEffect(() => {
-      const initAva = [] as Array<any>;
+      const initAva = [] as any[];
       values?.map((i) => {
         dataSource?.map((item) => {
           if (fields && item[fields.id] === i) {
@@ -84,11 +84,11 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
   };
   const handleChange = (val, users) => {
     if (!multiple) {
-      const ava = [] as Array<any>;
+      const ava = [] as any[];
       ava.push({ key: users.key, value: users.value, label: users.children[1] });
       setAva(ava);
     } else {
-      const ava = [] as Array<any>;
+      const ava = [] as any[];
       users.map((item) => {
         ava.push({ key: item.key, value: item.value, label: item.children[1] });
       });
@@ -142,8 +142,8 @@ const UserSelect: React.FC<UserSelectProps> = (props) => {
         ref={refSelect}
         className="wt-select-default"
         mode={multiple ? 'multiple' : undefined}
-        showSearch={true}
-        open={selectVisible ? true : false}
+        showSearch
+        open={!!selectVisible}
         value={values}
         style={{
           width: 'fit-content',
