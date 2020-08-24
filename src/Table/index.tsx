@@ -108,7 +108,7 @@ const ResizeableTalbe = <RecordType extends object = any>(
     };
   }
 
-  return <Table {...restProps} {...tableProps} />;
+  return <Table {...restProps} {...tableProps} sticky={{ offsetHeader: 64 }} />;
 };
 
 export default ResizeableTalbe;
