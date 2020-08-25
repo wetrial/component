@@ -5,6 +5,7 @@ module.exports = {
   rules: {
     ...strictEslint.rules,
     '@typescript-eslint/camelcase': 0,
+    '@typescript-eslint/no-unused-expressions': 0,
     '@typescript-eslint/class-name-casing': 0,
     '@typescript-eslint/prefer-interface': 0,
     '@typescript-eslint/no-explicit-any': 0,
