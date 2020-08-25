@@ -21,7 +21,7 @@ interface UserSelectProps {
 }
 const { Option } = Select;
 
-const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = (props) => {
+const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = (props, ref) => {
   const { defaultValue, dataSource, onChange, value, fields, cardRender, multiple } = props;
   const [avaList, setAva] = useState<any[]>([]);
   const [selectVisible, changeShow] = useState(false);
@@ -49,7 +49,7 @@ const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = (pr
             avatar: fields ? item[fields.avatar] : item.Avatar,
           });
         }
-        return;
+        return ref;
       });
       setAva(initAva);
       triggerChange();
