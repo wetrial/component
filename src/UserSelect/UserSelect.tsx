@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import './index.less';
 import { IKeyValue } from '@wetrial/core';
 
-interface fields {
+interface UserSelectFields {
   id: string;
   name: string;
   avatar: string;
@@ -14,26 +14,39 @@ interface UserSelectProps {
   dataSource: IKeyValue<any>[];
   onChange?: (value) => void;
   value?: string[] | string | undefined;
-  fields?: fields | undefined;
+  fields?: UserSelectFields | undefined;
   cardRender?: (key) => void;
   multiple?: boolean;
 }
 const { Option } = Select;
 
-const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> = (props) => {
-  const { defaultValue, dataSource, onChange, value, fields, cardRender, multiple } = props;
+const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> = ({
+  defaultValue,
+  dataSource,
+  onChange,
+  value,
+  fields = { id: 'UserId', name: 'FullName', avatar: 'Avatar' },
+  cardRender,
+  multiple = true,
+}) => {
   const [avaList, setAva] = useState<any[]>([]);
   const [selectVisible, changeShow] = useState(false);
   const [values, setValues] = useState<any>(defaultValue || value);
   const refSelect = useRef<any>();
   let firstLoad = false;
+
+  const triggerChange = () => {
+    if (onChange && !firstLoad) onChange(values);
+  };
+
   useEffect(() => {
     firstLoad = true;
   }, []);
-  if (!multiple) {
-    useEffect(() => {
-      const initAva = [] as any[];
-      dataSource?.map((item) => {
+
+  useEffect(() => {
+    const initAva = [] as any[];
+    if (!multiple) {
+      dataSource.map((item) => {
         if (fields && item[fields.id] === values) {
           initAva.push({
             key: fields ? item[fields.id] : item.UserId,
@@ -42,15 +55,13 @@ const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> =
             avatar: fields ? item[fields.avatar] : item.Avatar,
           });
         }
+        return;
       });
       setAva(initAva);
       triggerChange();
-    }, [values]);
-  } else {
-    useEffect(() => {
-      const initAva = [] as any[];
-      values?.map((i) => {
-        dataSource?.map((item) => {
+    } else {
+      values.map((i) => {
+        dataSource.map((item) => {
           if (fields && item[fields.id] === i) {
             initAva.push({
               key: fields ? item[fields.id] : item.UserId,
@@ -59,27 +70,29 @@ const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> =
               avatar: fields ? item[fields.avatar] : item.Avatar,
             });
           }
+          return;
         });
+        return;
       });
       setAva(initAva);
       triggerChange();
-    }, [values]);
-  }
+    }
+  }, [values]);
 
   const showPanel = () => {
     changeShow(true);
-    setTimeout(function () {
-      refSelect?.current?.focus();
+    setTimeout(() => {
+      refSelect.current.focus();
     }, 100);
   };
   const hidePanel = () => {
     changeShow(false);
   };
-  const removeUser = (value) => {
+  const removeUser = (val) => {
     if (!multiple) {
       setValues(undefined);
     } else {
-      setValues(values.filter((item) => item !== value));
+      setValues(values.filter((item) => item !== val));
     }
   };
   const handleChange = (val, users) => {
@@ -91,15 +104,12 @@ const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> =
       const ava = [] as any[];
       users.map((item) => {
         ava.push({ key: item.key, value: item.value, label: item.children[1] });
+        return;
       });
       setAva(ava);
     }
 
     setValues(val);
-  };
-
-  const triggerChange = () => {
-    onChange && !firstLoad && onChange(values);
   };
 
   return (
@@ -153,7 +163,7 @@ const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> =
         dropdownRender={(menu) => {
           return <div>{menu}</div>;
         }}
-        tagRender={(props) => {
+        tagRender={() => {
           return <></>;
         }}
         onBlur={hidePanel}
@@ -183,17 +193,6 @@ const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> =
       </Select>
     </div>
   );
-};
-
-UserSelect.defaultProps = {
-  cardRender: undefined,
-  fields: {
-    id: 'UserId',
-    name: 'FullName',
-    avatar: 'Avatar',
-  },
-  multiple: true,
-  value: undefined,
 };
 
 export default UserSelect;
