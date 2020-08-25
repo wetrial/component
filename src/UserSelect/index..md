@@ -5,9 +5,9 @@ nav:
   title: 组件
   path: /list
 group:
-  title: 数据展示
-  path: /data-display
-legacy: /data-display/userselect
+  title: 数据录入
+  path: /data-collect
+legacy: /data-collect/userselect
 ---
 
 ## UserSelect 人员选择器
