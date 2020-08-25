@@ -1,42 +1,23 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "esModuleInterop": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "strict": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "experimentalDecorators": true,
     "noImplicitAny": false,
-    "rootDir": "src",
-    "lib": ["esnext", "dom"],
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "allowJs": false,
-    "experimentalDecorators": true
+    "declaration": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@wetrial/component": ["./src/index.ts"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts",
-    "tslint:latest",
-    "tslint-config-prettier",
-    "lib",
-    "es",
-    "dist",
-    "**/__tests__",
-    "**/__test__",
-    "**/demo"
-  ]
+  "include": ["**/src", "**/docs", "/src/**/*.tsx", ".eslintrc.js", "tests", "jest.config.js"]
 }

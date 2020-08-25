@@ -9,6 +9,7 @@ interface UserSelectFields {
   name: string;
   avatar: string;
 }
+
 interface UserSelectProps {
   defaultValue?: string[];
   dataSource: IKeyValue<any>[];
@@ -20,12 +21,12 @@ interface UserSelectProps {
 }
 const { Option } = Select;
 
-const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> = ({
+const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = ({
   defaultValue,
   dataSource,
   onChange,
   value,
-  fields = { id: 'UserId', name: 'FullName', avatar: 'Avatar' },
+  fields,
   cardRender,
   multiple = true,
 }) => {
@@ -195,4 +196,10 @@ const UserSelect: React.ForwardRefRenderFunction<HTMLElement, UserSelectProps> =
   );
 };
 
-export default UserSelect;
+const UserSelectComponent = React.forwardRef<unknown, UserSelectProps>(UserSelect);
+
+UserSelectComponent.defaultProps = {
+  fields: { id: 'UserId', name: 'FullName', avatar: 'Avatar' },
+};
+
+export default UserSelectComponent;

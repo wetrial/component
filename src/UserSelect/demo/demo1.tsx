@@ -39,5 +39,5 @@ const handleChange = (v) => {
 };
 
 export default () => {
-  return <UserSelect value={selected} dataSource={data} onChange={handleChange}></UserSelect>;
+  return <UserSelect value={selected} dataSource={data} onChange={handleChange} />;
 };

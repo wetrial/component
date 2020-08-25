@@ -1,6 +1,6 @@
 {
   "name": "@wetrial/component",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "react component library",
   "keywords": [
     "antd components",
@@ -50,15 +50,15 @@
     "package.json"
   ],
   "dependencies": {
-    "@ant-design/icons": "^4.2.1",
-    "@ant-design/pro-layout": "^6.2.4",
-    "@wetrial/core": "^3.2.3",
-    "@wetrial/hooks": "^3.0.1",
-    "ahooks": "^2.2.0",
-    "antd": "^4.5.4",
+    "@ant-design/icons": "^4.2.2",
+    "@ant-design/pro-layout": "^6.4.9",
+    "@wetrial/core": "^3.3.1",
+    "@wetrial/hooks": "^3.0.4",
+    "ahooks": "^2.5.0",
+    "antd": "^4.6.1",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "path-to-regexp": "^6.1.0",
     "react": "^16.13.1",
     "react-custom-scrollbars": "^4.2.1",
@@ -66,45 +66,45 @@
     "react-dnd-html5-backend": "^11.1.3",
     "react-document-title": "^2.0.3",
     "react-resizable": "^1.10.1",
-    "tslint": "^6.1.2"
+    "use-merge-value": "^1.0.2"
   },
   "peerDependencies": {
-    "@ant-design/icons": "*",
-    "@ant-design/pro-layout": "*",
-    "@wetrial/core": "*",
-    "@wetrial/hooks": "*",
-    "ahooks": "*",
-    "antd": "*",
-    "classnames": "*",
-    "history": "*",
-    "lodash": "*",
-    "path-to-regexp": "*",
-    "react": "*",
-    "react-document-title": "*"
+    "@ant-design/icons": "@*",
+    "@ant-design/pro-layout": "@*",
+    "@wetrial/core": "@*",
+    "@wetrial/hooks": "@*",
+    "ahooks": "@*",
+    "antd": "@*",
+    "classnames": "@*",
+    "history": "@*",
+    "lodash": "@*",
+    "path-to-regexp": "@*",
+    "react": "@*",
+    "react-document-title": "@*"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.3.0",
     "@types/classnames": "^2.2.10",
     "@types/jest": "^25.2.3",
-    "@types/lodash": "^4.14.155",
+    "@types/lodash": "^4.14.159",
     "@types/pubsub-js": "^1.8.0",
     "@types/react-custom-scrollbars": "^4.0.6",
     "@types/react-document-title": "^2.0.4",
-    "@umijs/fabric": "^2.0.11",
-    "@umijs/preset-react": "^1.5.14",
+    "@umijs/fabric": "^2.2.2",
+    "@umijs/preset-react": "^1.5.22",
     "check-prettier": "^1.0.3",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
-    "dumi": "^1.0.33",
+    "dumi": "^1.0.34",
     "enzyme": "^3.11.0",
-    "father": "^2.29.3",
+    "father": "^2.29.6",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.9",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "resize-observer-polyfill": "^1.5.1",
     "sylvanas": "^0.4.3",
-    "typescript": "^3.8.3",
-    "umi": "^3.2.10"
+    "typescript": "^4.0.2",
+    "umi": "^3.2.16"
   },
   "engines": {
     "node": ">=12.16.3"
@@ -115,14 +115,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write",
-      "git add"
-    ]
+    "./**/*.less": "stylelint --syntax less",
+    "./**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js"
   },
   "checkFiles": [
     "src/**/*.ts*"
