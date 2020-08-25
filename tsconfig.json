@@ -4,10 +4,11 @@
     "target": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
@@ -21,12 +22,11 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "allowJs": false,
-    "experimentalDecorators": true,
     "paths": {
-      "@wetrial/component": ["lib/index.d.ts"]
+      "@wetrial/component": ["./src/index.ts"]
     }
   },
-  "include": ["**/src", "**/docs", "/src/**/*.tsx", ".eslintrc.js", "tests", "jest.config.js"],
+  "include": ["**/src", "**/docs", "src/**/*.tsx", ".eslintrc.js", "tests", "jest.config.js"],
   "exclude": [
     "node_modules",
     "scripts",
