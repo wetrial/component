@@ -21,15 +21,8 @@ interface UserSelectProps {
 }
 const { Option } = Select;
 
-const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = ({
-  defaultValue,
-  dataSource,
-  onChange,
-  value,
-  fields,
-  cardRender,
-  multiple = true,
-}) => {
+const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = (props) => {
+  const { defaultValue, dataSource, onChange, value, fields, cardRender, multiple } = props;
   const [avaList, setAva] = useState<any[]>([]);
   const [selectVisible, changeShow] = useState(false);
   const [values, setValues] = useState<any>(defaultValue || value);
@@ -200,6 +193,7 @@ const UserSelectComponent = React.forwardRef<unknown, UserSelectProps>(UserSelec
 
 UserSelectComponent.defaultProps = {
   fields: { id: 'UserId', name: 'FullName', avatar: 'Avatar' },
+  multiple: true,
 };
 
 export default UserSelectComponent;
