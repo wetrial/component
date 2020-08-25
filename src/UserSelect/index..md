@@ -34,9 +34,11 @@ WT 人员选择插件（单一层级）
 
 <code src="./demo/demo3.tsx" />
 
-### 在表单中使用
+### 在表单中使用以及自定义 fields
 
 > 在表单中使用，想要 submit 的时候直接获取组件值，必须用`Form.Item`包裹组件，并指定组件`name`，此时默认值不配置在组件本身，而是通过`Form`的`initialValues`来定义，组件自身的`onChange`仍然可以使用。
+
+> 可以通过配置 fields 属性自定义数据源对应的字段名称
 
 <code src="./demo/demo4.tsx" />
 

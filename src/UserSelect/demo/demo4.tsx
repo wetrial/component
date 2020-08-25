@@ -4,32 +4,32 @@ import { UserSelect } from '@wetrial/component';
 
 const data = [
   {
-    UserId: '001',
-    FullName: '张三',
+    Id: '001',
+    UserName: '张三',
     RoleName: '管理员',
     Avatar: null,
   },
   {
-    UserId: '002',
-    FullName: '李四',
+    Id: '002',
+    UserName: '李四',
     RoleName: '秘书',
     Avatar: null,
   },
   {
-    UserId: '003',
-    FullName: '王五',
+    Id: '003',
+    UserName: '王五',
     RoleName: '研究者',
     Avatar: null,
   },
   {
-    UserId: '004',
-    FullName: '令狐冲',
+    Id: '004',
+    UserName: '令狐冲',
     RoleName: '秘书',
     Avatar: null,
   },
   {
-    UserId: '005',
-    FullName: '任我行',
+    Id: '005',
+    UserName: '任我行',
     RoleName: '秘书',
     Avatar: null,
   },
@@ -46,7 +46,11 @@ export default () => {
   return (
     <Form name="basic" onFinish={onFinish} initialValues={{ userSelect: ['001'] }}>
       <Form.Item name="userSelect" label="UserSelect">
-        <UserSelect dataSource={data} onChange={handleChange}></UserSelect>
+        <UserSelect
+          dataSource={data}
+          onChange={handleChange}
+          fields={{ id: 'Id', name: 'UserName', avatar: 'Avatar' }}
+        ></UserSelect>
       </Form.Item>
 
       <Form.Item>
