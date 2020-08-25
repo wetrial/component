@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Select, Avatar, Button, Popover } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, DownOutlined } from '@ant-design/icons';
 import './index.less';
 import { IKeyValue } from '@wetrial/core';
 
@@ -137,7 +137,10 @@ const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = (pr
             );
           })}
           <span onClick={showPanel}>
-            <Avatar icon={<PlusOutlined />} />
+            <Avatar
+              className="user-selet-trigger"
+              icon={multiple ? <PlusOutlined /> : <DownOutlined />}
+            />
           </span>
         </Avatar.Group>
       </div>
