@@ -69,18 +69,18 @@
     "use-merge-value": "^1.0.2"
   },
   "peerDependencies": {
-    "@ant-design/icons": "@*",
-    "@ant-design/pro-layout": "@*",
-    "@wetrial/core": "@*",
-    "@wetrial/hooks": "@*",
-    "ahooks": "@*",
-    "antd": "@*",
-    "classnames": "@*",
-    "history": "@*",
-    "lodash": "@*",
-    "path-to-regexp": "@*",
-    "react": "@*",
-    "react-document-title": "@*"
+    "@ant-design/icons": "4.x",
+    "@ant-design/pro-layout": "6.x",
+    "@wetrial/core": "3.x",
+    "@wetrial/hooks": "3.x",
+    "ahooks": "2.x",
+    "antd": "4.x",
+    "classnames": "2.x",
+    "history": "4.x",
+    "lodash": "4.x",
+    "path-to-regexp": "6.x",
+    "react": "16.x",
+    "react-document-title": "2.x"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.3.0",
