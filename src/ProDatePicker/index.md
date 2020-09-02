@@ -30,7 +30,7 @@ legacy: /data-collect/pro-date-picker
 
 ### 带 NA 或者 UN 的日期选择器
 
-> 设置属性'allowNa'可填写值为 NA，设置属性`partialDate`可设置值为部分未知（UN）
+> 设置属性`allowNa`可填写值为 NA，设置属性`partialDate`可设置值为部分未知（UN）
 
 <code src="./demo/demo3.tsx" />
 

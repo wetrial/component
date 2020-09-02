@@ -7,7 +7,7 @@ const handleChange = (val) => {
 export default () => {
   return (
     <ProDatePicker
-      value="UNUN-UN-UN"
+      value="2019-UN-UN"
       allowNa={true}
       partialDate={true}
       picker="date"
