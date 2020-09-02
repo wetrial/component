@@ -2,6 +2,8 @@ import { configIconUrl } from './IconFont';
 
 export { default as UserSelect } from './UserSelect';
 
+export { default as ProDatePicker } from './ProDatePicker';
+
 export { default as Ellipsis } from './Ellipsis';
 
 export { default as Exception } from './Exception';
