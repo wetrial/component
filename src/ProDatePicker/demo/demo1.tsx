@@ -6,12 +6,14 @@ const handleChange = (val) => {
 };
 export default () => {
   return (
-    <ProDatePicker
-      value="UNUN-UN-UN"
-      allowNa={true}
-      partialDate={true}
-      picker="date"
-      onChange={handleChange}
-    />
+    <div>
+      <ProDatePicker picker="date" onChange={handleChange} />
+      <br />
+      <ProDatePicker picker="year" onChange={handleChange} />
+      <br />
+      <ProDatePicker picker="month" onChange={handleChange} />
+      <br />
+      <ProDatePicker picker="week" onChange={handleChange} />
+    </div>
   );
 };

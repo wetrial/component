@@ -70,11 +70,11 @@ const ProDatePicker: React.SFC<TProDatePickerProps> = (props: TProDatePickerProp
     if (partial === 'none') {
       result = val;
     } else if (partial === 'month') {
-      const mydate = val.format('yyyy');
+      const mydate = val.format('YYYY');
       result = `${mydate.toString()}-UN-UN`;
       setPartialValue(result);
     } else if (partial === 'day') {
-      const mydate = val.format('yyyy-MM');
+      const mydate = val.format('YYYY-MM');
       result = `${mydate.toString()}-UN`;
       setPartialValue(result);
     }
