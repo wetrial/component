@@ -17,7 +17,7 @@ const { Item } = Menu;
 const ProDatePicker: React.SFC<TProDatePickerProps> = (props: TProDatePickerProps) => {
   const { partialDate, onChange, allowNa, value, ...rest } = props;
   const [partial, setPartial] = useState('none');
-  const [partialText, setPartialText] = useState('');
+  const [partialText, setPartialText] = useState('默认');
   const [partialValue, setPartialValue] = useState(value);
   useEffect(() => {
     if (partialDate || allowNa) {
@@ -49,7 +49,7 @@ const ProDatePicker: React.SFC<TProDatePickerProps> = (props: TProDatePickerProp
     } else if (val.key === 'day') {
       text = '日';
     } else if (val.key === 'none') {
-      text = '';
+      text = '默认';
     } else {
       text = 'NA';
     }
@@ -104,7 +104,7 @@ const ProDatePicker: React.SFC<TProDatePickerProps> = (props: TProDatePickerProp
       <Input.Group compact>
         {(allowNa || partialDate) && (
           <Dropdown overlay={menu}>
-            <Button style={{ width: '60px', textAlign: 'center' }}>
+            <Button style={{ width: '65px', textAlign: 'center' }}>
               {partialText}
               <DownOutlined style={{ position: 'relative', left: '-4px' }} />
             </Button>
