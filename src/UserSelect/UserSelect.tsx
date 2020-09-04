@@ -66,10 +66,10 @@ const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = (pr
           }
           return;
         });
+        setAva(initAva);
+        triggerChange();
         return;
       });
-      setAva(initAva);
-      triggerChange();
     }
   }, [values]);
 
@@ -93,57 +93,53 @@ const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = (pr
     if (!multiple) {
       const ava = [] as any[];
       ava.push({ key: users.key, value: users.value, label: users.children[1] });
-      setAva(ava);
     } else {
       const ava = [] as any[];
       users.map((item) => {
         ava.push({ key: item.key, value: item.value, label: item.children[1] });
         return;
       });
-      setAva(ava);
     }
 
     setValues(val);
   };
 
   return (
-    <div>
-      <div>
-        <Avatar.Group>
-          {avaList.map((item) => {
-            return (
-              <Popover
-                key={item.key}
-                title={item.label}
-                content={() => {
-                  return (
-                    <div className="user-card">
-                      {cardRender && cardRender(item.key)}
-                      <div>
-                        <Button danger size="small" onClick={removeUser.bind(null, item.key)}>
-                          移除
-                        </Button>
-                      </div>
+    <div style={{ display: 'flex' }}>
+      <Avatar.Group>
+        {avaList.map((item) => {
+          return (
+            <Popover
+              key={item.key}
+              title={item.label}
+              content={() => {
+                return (
+                  <div className="user-card">
+                    {cardRender && cardRender(item.key)}
+                    <div>
+                      <Button danger size="small" onClick={removeUser.bind(null, item.key)}>
+                        移除
+                      </Button>
                     </div>
-                  );
-                }}
-              >
-                {item.avatar ? (
-                  <Avatar src={item.avatar}>{item.label}</Avatar>
-                ) : (
-                  <Avatar>{item.label}</Avatar>
-                )}
-              </Popover>
-            );
-          })}
-          <span onClick={showPanel}>
-            <Avatar
-              className="user-selet-trigger"
-              icon={multiple ? <PlusOutlined /> : <DownOutlined />}
-            />
-          </span>
-        </Avatar.Group>
-      </div>
+                  </div>
+                );
+              }}
+            >
+              {item.avatar ? (
+                <Avatar src={item.avatar}>{item.label}</Avatar>
+              ) : (
+                <Avatar>{item.label}</Avatar>
+              )}
+            </Popover>
+          );
+        })}
+        <span onClick={showPanel}>
+          <Avatar
+            className="user-selet-trigger"
+            icon={multiple ? <PlusOutlined /> : <DownOutlined />}
+          />
+        </span>
+      </Avatar.Group>
 
       <Select
         ref={refSelect}
@@ -155,7 +151,8 @@ const UserSelect: React.ForwardRefRenderFunction<unknown, UserSelectProps> = (pr
         style={{
           width: 'fit-content',
           minWidth: '150px',
-          display: selectVisible ? 'block' : 'none',
+          flexDirection: 'column',
+          display: selectVisible ? 'inline-flex' : 'none',
         }}
         dropdownRender={(menu) => {
           return <div>{menu}</div>;
